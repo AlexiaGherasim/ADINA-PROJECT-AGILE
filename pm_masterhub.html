@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM MasterHub - Project Management Master's Program</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0f172a;
+            --primary-blue: #1e3a8a;
+            --primary-light: #2563eb;
+            --accent-coral: #f97316;
+            --accent-pink: #ec4899;
+            --gradient-brand: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #7c3aed 100%);
+            --gradient-cta: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 14px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            background: var(--gradient-cta);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #cbd5e1;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.88rem;
+            padding: 8px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-cta-small {
+            background: var(--gradient-cta);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-cta-small:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.45);
+        }
+
+        .btn-outline-small {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+            padding: 7px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-small:hover {
+            background: #ffffff;
+            color: var(--primary-dark);
+        }
+
+        /* SPA PAGE TRANSITIONS */
+        .page-view {
+            display: none;
+            animation: fadeEffect 0.3s ease-in-out;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeEffect {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 58, 138, 0.86) 55%, rgba(124, 58, 237, 0.84) 100%),
+                        url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            padding: 85px 5% 75px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fde047;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 2.9rem;
+            font-weight: 800;
+            max-width: 880px;
+            margin: 0 auto 18px;
+            line-height: 1.22;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 760px;
+            margin: 0 auto 35px;
+            color: #e2e8f0;
+            font-weight: 300;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 45px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-cta);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.35);
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(236, 72, 153, 0.55);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid #ffffff;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .btn-outline-blue {
+            background: transparent;
+            border: 1.5px solid var(--primary-light);
+            color: var(--primary-light);
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-blue:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .hero-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 45px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            padding-top: 28px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .metric-box h3 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .metric-box span {
+            font-size: 0.82rem;
+            color: #cbd5e1;
+        }
+
+        /* SECTIONS & HEADERS */
+        .section {
+            padding: 70px 5%;
+            max-width: 1260px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-tag {
+            color: var(--primary-light);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .section-header h2 {
+            font-size: 2.1rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 660px;
+            margin: 8px auto 0;
+            font-size: 0.95rem;
+        }
+
+        /* LANDING PAGE: PROGRAM OVERVIEW */
+        .overview-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 35px;
+            align-items: stretch;
+        }
+
+        .overview-main-card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            border-left: 6px solid var(--primary-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .check-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .check-list li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            font-size: 0.93rem;
+            color: var(--text-dark);
+        }
+
+        .check-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            background: var(--primary-light);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid var(--primary-blue);
+        }
+
+        .benefit-label {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: var(--primary-dark);
+        }
+
+        .benefit-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* LANDING PAGE: APPLICATION PROCESS VISUAL MOCKUP */
+        .process-section {
+            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            padding: 75px 5%;
+        }
+
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 45px;
+        }
+
+        .step-box {
+            background: white;
+            padding: 26px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid var(--primary-light);
+        }
+
+        .step-circle {
+            width: 42px;
+            height: 42px;
+            background: var(--gradient-brand);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin: 0 auto 14px;
+        }
+
+        .step-box h4 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: var(--primary-dark);
+        }
+
+        .step-box p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+
+        .mockup-frame {
+            max-width: 960px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.1);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .mockup-top {
+            background: var(--primary-dark);
+            color: #cbd5e1;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 7px;
+        }
+
+        .win-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #475569;
+        }
+
+        .mockup-content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .progress-track {
+            background: #e2e8f0;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0 18px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--gradient-cta);
+            transition: width 0.3s ease;
+        }
+
+        .mock-row {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success { background: #d1fae5; color: #047857; }
+        .badge-warning { background: #fef3c7; color: #b45309; }
+        .badge-info { background: #dbeafe; color: #1d4ed8; }
+        .badge-danger { background: #fee2e2; color: #b91c1c; }
+
+        /* CARDS GRID (CURRICULUM, FACULTY, INTERNSHIPS, ALUMNI) */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .data-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--primary-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .data-card h3 {
+            font-size: 1.12rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .meta-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .meta-tag {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-size: 0.73rem;
+            font-weight: 600;
+        }
+
+        .course-detail-list {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            margin: 10px 0 16px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 10px;
+        }
+
+        .course-detail-list p {
+            margin-bottom: 5px;
+        }
+
+        .course-detail-list strong {
+            color: var(--text-dark);
+        }
+
+        /* WIZARD CONTAINER (5 STEPS) */
+        .portal-box {
+            max-width: 780px;
+            margin: 0 auto;
+            background: white;
+            padding: 38px;
+            border-radius: 18px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+        }
+
+        .wizard-step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            gap: 8px;
+        }
+
+        .step-pill {
+            flex: 1;
+            text-align: center;
+            padding: 8px 6px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            border-radius: 8px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        .step-pill.active {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+
+        .step-pill.completed {
+            background: #d1fae5;
+            color: #047857;
+            border-color: #a7f3d0;
+        }
+
+        .wizard-panel {
+            display: none;
+        }
+
+        .wizard-panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.88rem;
+            color: var(--primary-dark);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+
+        .validation-alert {
+            display: none;
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+            color: #991b1b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 0.86rem;
+            font-weight: 500;
+        }
+
+        .notification-banner {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary-light);
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* SYLLABUS MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: white;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: #94a3b8;
+            padding: 50px 5% 30px;
+            margin-top: 70px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 14px;
+            font-size: 1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 0.88rem;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        @media (max-width: 860px) {
+            .overview-layout, .mockup-content {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .wizard-step-indicators {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MAIN NAVIGATION BAR -->
+    <header>
+        <a class="logo" onclick="navigateTo('home')">
+            <span class="logo-badge">SNSPA</span> PM MasterHub
+        </a>
+        <nav>
+            <button class="nav-link active" id="nav-home" onclick="navigateTo('home')">Home</button>
+            <button class="nav-link" id="nav-curriculum" onclick="navigateTo('curriculum')">Curriculum</button>
+            <button class="nav-link" id="nav-faculty" onclick="navigateTo('faculty')">Faculty</button>
+            <button class="nav-link" id="nav-internships" onclick="navigateTo('internships')">Internships</button>
+            <button class="nav-link" id="nav-alumni" onclick="navigateTo('alumni')">Alumni</button>
+            <button class="nav-link" id="nav-status" onclick="navigateTo('status')">Application Status</button>
+            <button class="nav-link" id="nav-contact" onclick="navigateTo('contact')">Contact</button>
+        </nav>
+        <div class="nav-actions">
+            <button class="btn-cta-small" onclick="navigateTo('apply')">Apply Now</button>
+            <button class="btn-outline-small" onclick="navigateTo('dashboard')">Login</button>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         1. LANDING PAGE (HOME)
+         ========================================================= -->
+    <main id="page-home" class="page-view active">
+        
+        <!-- Prominent Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">
+                PMI GAC Accredited Program (2026-2032) | National University of Political Studies and Public Administration
+            </div>
+            <h1>Your Interactive, Community-Focused Hub for Project Management Excellence</h1>
+            <p>
+                Prepare for high-impact leadership roles in public and private organizations. The Master's Program in Project Management blends international PMI standards, practical simulations, and real-time academic tracking.
+            </p>
+            <!-- Key Calls-to-Action (CTAs) -->
+            <div class="cta-group">
+                <button class="btn-primary" onclick="navigateTo('apply')">Apply Now</button>
+                <button class="btn-secondary" onclick="navigateTo('curriculum')">Explore the Program</button>
+                <button class="btn-secondary" onclick="navigateTo('dashboard')">Login to Student Portal</button>
+            </div>
+            <div class="hero-metrics">
+                <div class="metric-box">
+                    <h3>120 ECTS</h3>
+                    <span>2-Year Master's Degree</span>
+                </div>
+                <div class="metric-box">
+                    <h3>3 Study Tracks</h3>
+                    <span>English FT | Romanian PT | IFR</span>
+                </div>
+                <div class="metric-box">
+                    <h3>16 Courses</h3>
+                    <span>PMBOK, Agile, Grants & Risk</span>
+                </div>
+                <div class="metric-box">
+                    <h3>PMI GAC</h3>
+                    <span>Internationally Accredited</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clear Program Overview: Who It Is For & Key Benefits -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-tag">Program Overview</span>
+                <h2>Who This Master's Program Is For & Key Benefits</h2>
+                <p>Dedicated to training professionals capable of coordinating complex projects in modern organizations across the public, private, and non-governmental sectors.</p>
+            </div>
+
+            <div class="overview-layout">
+                <div class="overview-main-card">
+                    <div>
+                        <h3>Who Should Apply & Why It Matters</h3>
+                        <p style="color:var(--text-muted); font-size:0.93rem; margin-top:10px;">
+                            As organizations increasingly develop their operations through projects, project management has become a strategic competency in the labor market. This program is designed for:
+                        </p>
+                        <ul class="check-list">
+                            <li><strong>Project Team Members:</strong> Professionals pursuing a formal career as a Project Manager, Program Director, or Planner.</li>
+                            <li><strong>Public & EU Program Specialists:</strong> Experts managing grant funds, European programs, and public investments.</li>
+                            <li><strong>Entrepreneurs & Business Leaders:</strong> Founders intending to attract European funding and scale operations systematically.</li>
+                            <li><strong>Consultants & Trainers:</strong> Practitioners seeking alignment with international PMI standards and professional certifications.</li>
+                        </ul>
+                    </div>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:15px;">
+                        <button class="btn-primary" style="padding:10px 22px; font-size:0.88rem;" onclick="navigateTo('curriculum')">Explore Curriculum</button>
+                        <button class="btn-outline-blue" onclick="navigateTo('faculty')">View Faculty Profiles</button>
+                    </div>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <span class="benefit-label">Global Standard</span>
+                        <h4>PMI GAC Accreditation</h4>
+                        <p>The only program in Romania accredited by the PMI Global Accreditation Center, reconfirmed for 2026-2032.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="benefit-label">Career Growth</span>
+                        <h4>Executive Readiness</h4>
+                        <p>Graduates step into roles as IT Project Managers, Risk Managers, Process Improvement Leads, and Program Directors.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="benefit-label">Industry Relevance</span>
+                        <h4>Applied Simulations</h4>
+                        <p>Learn directly from practitioner professors through real case studies, Agile Scrum boards, and team simulations.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <span class="benefit-label">Flexibility</span>
+                        <h4>Three Program Variants</h4>
+                        <p>Available as Full-Time in English, Part-Time in Romanian, or Part-Time Low-Frequency (IFR) for working professionals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Mock-Up of the Application Process -->
+        <section class="process-section">
+            <div class="section-header">
+                <span class="section-tag">Admissions Workflow</span>
+                <h2>Visual Mock-Up of the Application Process</h2>
+                <p>Our guided 5-step Application Wizard ensures you always know what information and documents are required.</p>
+            </div>
+
+            <div class="steps-row">
+                <div class="step-box">
+                    <div class="step-circle">1</div>
+                    <h4>Personal Details</h4>
+                    <p>Create your applicant profile and contact record.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-circle">2</div>
+                    <h4>Academic History</h4>
+                    <p>Enter your Bachelor's degree details and GPA.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-circle">3</div>
+                    <h4>Program Track</h4>
+                    <p>Select English Full-Time, Romanian Part-Time, or IFR.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-circle">4</div>
+                    <h4>Document Upload</h4>
+                    <p>Attach your CV, Letter of Intent, and Admission Essay.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-circle">5</div>
+                    <h4>Live Status Portal</h4>
+                    <p>Submit and track admissions decisions in real time.</p>
+                </div>
+            </div>
+
+            <!-- Interactive Application Mock-up Preview Frame -->
+            <div class="mockup-frame">
+                <div class="mockup-top">
+                    <div class="window-controls">
+                        <span class="win-dot"></span>
+                        <span class="win-dot"></span>
+                        <span class="win-dot"></span>
+                    </div>
+                    <span>Application Wizard & Status Mock-Up Preview</span>
+                    <span>Step 2 of 5</span>
+                </div>
+                <div class="mockup-content">
+                    <div>
+                        <span class="badge badge-info">Interactive Wizard Preview</span>
+                        <h3 style="margin:10px 0 4px; color:var(--primary-dark);">Online Application Progress: 40%</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted);">Automatic field validation and real-time document checks enabled.</p>
+                        <div class="progress-track">
+                            <div class="progress-bar-fill" style="width: 40%;"></div>
+                        </div>
+                        <div class="mock-row">
+                            <span>Step 1: Personal Information</span>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        <div class="mock-row" style="border-color:var(--primary-light); background:#eff6ff;">
+                            <span>Step 2: Educational Background</span>
+                            <span class="badge badge-info">In Progress (Step 2 of 5)</span>
+                        </div>
+                        <div class="mock-row">
+                            <span>Step 4: Required Documents (CV, Letter of Intent, Essay)</span>
+                            <span class="badge badge-warning">Pending Upload</span>
+                        </div>
+                    </div>
+                    <div style="background:var(--bg-light); padding:26px; border-radius:14px; text-align:center; border:1px solid var(--border-color);">
+                        <h4 style="margin-bottom:8px; color:var(--primary-dark);">Start Your Application</h4>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:18px;">
+                            Open the full 5-step Application Wizard or check your current admissions status in the portal.
+                        </p>
+                        <button class="btn-primary" style="width:100%; margin-bottom:10px; padding:12px;" onclick="navigateTo('apply')">
+                            Open Application Wizard
+                        </button>
+                        <button class="btn-outline-blue" style="width:100%;" onclick="navigateTo('status')">
+                            View Application Status
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================
+         2. PROGRAM CURRICULUM PAGE (MVP PRIORITY 2)
+         ========================================================= -->
+    <section id="page-curriculum" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">120 ECTS | 2 Years (4 Semesters)</span>
+            <h2>Program Curriculum & Course Outlines</h2>
+            <p>Review all 16 courses across Year 1 and Year 2, including credits, duration, prerequisites, and key learning outcomes.</p>
+            <div style="margin-top:18px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+                <button class="btn-outline-blue" onclick="navigateTo('faculty')">View Faculty & Instructor Profiles</button>
+                <button class="btn-primary" style="padding:9px 22px; font-size:0.86rem;" onclick="navigateTo('apply')">Apply for Admission</button>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterCurriculum('all', this)">All Courses (16)</button>
+            <button class="filter-btn" onclick="filterCurriculum('year1', this)">Year 1 Courses (8)</button>
+            <button class="filter-btn" onclick="filterCurriculum('year2', this)">Year 2 Courses (8)</button>
+        </div>
+
+        <div class="cards-grid" id="curriculum-grid">
+            <!-- YEAR 1 COURSES -->
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Project Management I</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Foundational predictive project management processes: initiating, scope definition, WBS, scheduling, and budgeting.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Prof. Dr. Simona Bonghez, PMP</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                        <p><strong>Key Learning Outcomes:</strong> Develop a complete project management plan and Work Breakdown Structure aligned with PMBOK standards.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Project Management I', 'Prof. Dr. Simona Bonghez, PMP', '8 ECTS | 14 Weeks', 'None', 'Master project initiation, WBS construction, critical path scheduling, and constraint management.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Entrepreneurship and Innovation</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Cultivating entrepreneurial thinking and designing innovative products and services through project-based initiatives.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Dr. Lavinia Iancu</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                        <p><strong>Key Learning Outcomes:</strong> Formulate business models, evaluate market feasibility, and pitch innovative project ventures.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Entrepreneurship and Innovation', 'Dr. Lavinia Iancu', '7 ECTS | 14 Weeks', 'None', 'Develop entrepreneurial competencies, value propositions, and innovation strategies for organizations.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Leadership and Management of the Project Team</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Managing group dynamics, team motivation, conflict resolution, and leadership styles across project life cycles.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Lect. Univ. Dr. Carmen Novac</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                        <p><strong>Key Learning Outcomes:</strong> Guide teams through Forming, Storming, Norming, and Performing stages with empathetic leadership.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Leadership and Management of the Project Team', 'Lect. Univ. Dr. Carmen Novac', '8 ECTS | 14 Weeks', 'None', 'Understand individual and group phenomena experienced in project teams and apply facilitation techniques.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>European Funding</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Attracting, writing, and implementing grant-funded projects financed through European Union programs.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Assoc. Prof. Dr. Elena Negrea-Busuioc</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                        <p><strong>Key Learning Outcomes:</strong> Draft compliant EU funding proposals, logical matrices, and public grant budgets.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('European Funding', 'Assoc. Prof. Dr. Elena Negrea-Busuioc', '8 ECTS | 14 Weeks', 'None', 'Navigate EU funding mechanisms, eligibility guidelines, and grant implementation frameworks.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Project Management II</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Advanced execution, earned value management (EVM), quality control, procurement, and project closure.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Prof. Dr. Simona Bonghez, PMP</p>
+                        <p><strong>Prerequisites:</strong> Project Management I</p>
+                        <p><strong>Key Learning Outcomes:</strong> Monitor project baselines using Earned Value metrics and execute formal contract closures.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Project Management II', 'Prof. Dr. Simona Bonghez, PMP', '8 ECTS | 14 Weeks', 'Project Management I', 'Execute, monitor, and control complex projects using Earned Value Management and quality assurance.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Presentation Skills for Project Managers</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Executive communication, stakeholder pitching, negotiation, and persuasive reporting for project leaders.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Cda Dr. Georgiana Cristea</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                        <p><strong>Key Learning Outcomes:</strong> Deliver clear stakeholder demos, status briefings, and executive steering presentations.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Presentation Skills for Project Managers', 'Cda Dr. Georgiana Cristea', '7 ECTS | 14 Weeks', 'None', 'Develop communication, presentation, and stakeholder relationship skills essential for project managers.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Research Methods in Communication Sciences</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Quantitative and qualitative research methodologies for organizational analysis and applied project studies.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructors:</strong> Assoc. Prof. Dr. Valeriu Frunzaru & Prof. Dr. Loredana Ivan</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                        <p><strong>Key Learning Outcomes:</strong> Design surveys, interview guides, and empirical data analyses for project research.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Research Methods in Communication Sciences', 'Assoc. Prof. Dr. Valeriu Frunzaru & Prof. Dr. Loredana Ivan', '7 ECTS | 14 Weeks', 'None', 'Apply empirical research instruments and data analysis to organizational and project challenges.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year1">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 1</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Strategic Management</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Aligning project portfolios with organizational strategy, competitive advantage, and long-term governance.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Cda Dr. Cristina Racoceanu</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                        <p><strong>Key Learning Outcomes:</strong> Evaluate strategic alignment of project portfolios and organizational value delivery.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Strategic Management', 'Cda Dr. Cristina Racoceanu', '7 ECTS | 14 Weeks', 'None', 'Connect project execution to overarching corporate and public-sector strategic objectives.')">View / Download Syllabus</button>
+            </div>
+
+            <!-- YEAR 2 COURSES -->
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Agile Project Management Methodologies</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Principles and practices of Agile, Scrum, Kanban, and Extreme Programming (XP) for dynamic environments.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructors:</strong> Prof. Dr. Simona Bonghez, PMP / C.d.a. Adina Grigoroiu</p>
+                        <p><strong>Prerequisites:</strong> Project Management I & II</p>
+                        <p><strong>Key Learning Outcomes:</strong> Compare predictive and adaptive lifecycles and deliver a product prototype using Scrum and Trello.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Agile Project Management Methodologies', 'Prof. Dr. Simona Bonghez, PMP / C.d.a. Adina Grigoroiu', '8 ECTS | 14 Weeks (2h lecture + 1h seminar/week)', 'Project Management I & II', 'Apply Scrum, Kanban, user story mapping, relative estimation, and velocity tracking to deliver a working product prototype.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Applications for Project Management</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Digital software tools for project scheduling, resource allocation, tracking, and collaborative workflows.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Prof. Mirela Pirvan, PhD</p>
+                        <p><strong>Prerequisites:</strong> Project Management I</p>
+                        <p><strong>Key Learning Outcomes:</strong> Configure project schedules, resource calendars, and digital tracking boards.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Applications for Project Management', 'Prof. Mirela Pirvan, PhD', '7 ECTS | 14 Weeks', 'Project Management I', 'Master software applications and digital innovations for planning and tracking complex projects.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Risk Management</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Qualitative and quantitative risk analysis, mitigation strategies, and managing project uncertainty.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Assoc. Prof. Dr. Sergiu Stan</p>
+                        <p><strong>Prerequisites:</strong> Project Management I</p>
+                        <p><strong>Key Learning Outcomes:</strong> Utilize risk management instruments for identifying, analyzing, and mitigating project risks.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Risk Management', 'Assoc. Prof. Dr. Sergiu Stan', '8 ECTS | 14 Weeks', 'Project Management I', 'Build comprehensive risk registers, probability-impact matrices, and contingency response plans.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Preparation and Implementation of Research Projects</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Designing, funding, and coordinating national and international R&D and academic research projects.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Prof. Dr. Adrian Curaj</p>
+                        <p><strong>Prerequisites:</strong> Research Methods</p>
+                        <p><strong>Key Learning Outcomes:</strong> Structure multi-partner research consortia, work packages, and deliverable milestones.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Preparation and Implementation of Research Projects', 'Prof. Dr. Adrian Curaj', '7 ECTS | 14 Weeks', 'Research Methods', 'Coordinate research-driven initiatives and innovation grant consortia.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Project Evaluation and Audit</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Compliance verification, quality auditing, benefit realization, and post-implementation project evaluation.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Assoc. Prof. Dr. Sergiu Stan</p>
+                        <p><strong>Prerequisites:</strong> Project Management II</p>
+                        <p><strong>Key Learning Outcomes:</strong> Conduct formal project audits and evaluate compliance against contractual objectives.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Project Evaluation and Audit', 'Assoc. Prof. Dr. Sergiu Stan', '7 ECTS | 14 Weeks', 'Project Management II', 'Perform independent project audits and assess long-term project impact.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">7 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Monitoring and Performance Indicators</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Designing KPIs, control charts, dashboards, and performance reporting systems for projects.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Dr. Irina Lonean</p>
+                        <p><strong>Prerequisites:</strong> Project Management I</p>
+                        <p><strong>Key Learning Outcomes:</strong> Define measurable KPIs and track project health across predictive and adaptive workflows.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Monitoring and Performance Indicators', 'Dr. Irina Lonean', '7 ECTS | 14 Weeks', 'Project Management I', 'Design performance indicator frameworks to track outputs, outcomes, and project efficiency.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Specialized Practice (Internship)</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Supervised practical placement in partner companies, public institutions, or project management offices.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Dr. Marina Enache</p>
+                        <p><strong>Prerequisites:</strong> Year 1 Completed</p>
+                        <p><strong>Key Learning Outcomes:</strong> Apply project management tools in a real organizational environment and compile a practice portfolio.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Specialized Practice', 'Dr. Marina Enache', '8 ECTS | 14 Weeks', 'Year 1 Completed', 'Transition theoretical knowledge into practical project execution within partner organizations.')">View / Download Syllabus</button>
+            </div>
+
+            <div class="data-card" data-year="year2">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Year 2</span><span class="meta-tag">8 ECTS</span><span class="meta-tag">14 Weeks</span></div>
+                    <h3>Methods and Techniques for Developing the Graduation Thesis</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Structured academic guidance for researching, writing, and defending the Master's dissertation.</p>
+                    <div class="course-detail-list">
+                        <p><strong>Instructor:</strong> Cda Dr. Iulia Calin</p>
+                        <p><strong>Prerequisites:</strong> Research Methods</p>
+                        <p><strong>Key Learning Outcomes:</strong> Complete a rigorous, original Master's dissertation addressing an applied PM topic.</p>
+                    </div>
+                </div>
+                <button class="btn-outline-blue" onclick="openSyllabusModal('Methods for Developing the Graduation Thesis', 'Cda Dr. Iulia Calin', '8 ECTS | 14 Weeks', 'Research Methods', 'Structure theoretical frameworks, empirical analysis, and academic formatting for the final defense.')">View / Download Syllabus</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         3. APPLICATION WIZARD PAGE (MVP PRIORITY 3)
+         ========================================================= -->
+    <section id="page-apply" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">Prospective Student Admissions</span>
+            <h2>Step-by-Step Online Application Wizard</h2>
+            <p>Complete all 5 steps below. Required fields are validated automatically at every step.</p>
+        </div>
+
+        <div class="portal-box">
+            <!-- Progress Indicator Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <strong id="wiz-step-text" style="color:var(--primary-blue); font-size:0.95rem;">Step 1 of 5: Personal Information</strong>
+                <span class="badge badge-info" id="wiz-pct-text">20% Completed</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-bar-fill" id="wiz-progress-bar" style="width: 20%;"></div>
+            </div>
+
+            <!-- 5 Step Pills -->
+            <div class="wizard-step-indicators">
+                <div class="step-pill active" id="pill-1">1. Personal Info</div>
+                <div class="step-pill" id="pill-2">2. Education</div>
+                <div class="step-pill" id="pill-3">3. Program Track</div>
+                <div class="step-pill" id="pill-4">4. Documents</div>
+                <div class="step-pill" id="pill-5">5. Review & Submit</div>
+            </div>
+
+            <!-- Automatic Validation Prompt Banner -->
+            <div class="validation-alert" id="wiz-alert">
+                Validation Error: Please complete all required fields marked with (*) before advancing to the next step.
+            </div>
+
+            <!-- STEP 1 OF 5 -->
+            <div class="wizard-panel active" id="wiz-panel-1">
+                <div class="form-group">
+                    <label>Full Legal Name *</label>
+                    <input type="text" id="w-name" placeholder="Enter your first and last name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address (for Application Receipt & Portal Notifications) *</label>
+                    <input type="email" id="w-email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="w-phone" placeholder="+40 7XX XXX XXX">
+                </div>
+                <div style="text-align:right; margin-top:20px;">
+                    <button class="btn-primary" onclick="nextWizardStep(1)">Next: Step 2 of 5</button>
+                </div>
+            </div>
+
+            <!-- STEP 2 OF 5 -->
+            <div class="wizard-panel" id="wiz-panel-2">
+                <div class="form-group">
+                    <label>Undergraduate University / Institution *</label>
+                    <input type="text" id="w-uni" placeholder="e.g., SNSPA Bucharest">
+                </div>
+                <div class="form-group">
+                    <label>Bachelor's Degree Specialization *</label>
+                    <input type="text" id="w-degree" placeholder="e.g., Communication, Management, IT, Economics">
+                </div>
+                <div class="form-group">
+                    <label>Bachelor's Final Exam GPA (1.00 - 10.00) *</label>
+                    <input type="number" step="0.01" min="5" max="10" id="w-gpa" placeholder="e.g., 9.40">
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-top:20px;">
+                    <button class="btn-outline-blue" onclick="goToWizardStep(1)">Previous Step</button>
+                    <button class="btn-primary" onclick="nextWizardStep(2)">Next: Step 3 of 5</button>
+                </div>
+            </div>
+
+            <!-- STEP 3 OF 5 -->
+            <div class="wizard-panel" id="wiz-panel-3">
+                <div class="form-group">
+                    <label>Select Master's Program Variant *</label>
+                    <select id="w-track">
+                        <option value="">-- Choose Your Study Track --</option>
+                        <option value="Full-Time Master's in Project Management (English)">Full-Time Master's Degree - Taught in English</option>
+                        <option value="Part-Time Master's in Project Management (Romanian)">Part-Time Master's Degree - Taught in Romanian</option>
+                        <option value="Part-Time Master's Degree (IFR)">Part-Time Master's Degree - IFR (Low Frequency)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Current Professional Role / Background *</label>
+                    <input type="text" id="w-role" placeholder="e.g., Junior Project Coordinator / Business Analyst">
+                </div>
+                <div class="form-group">
+                    <label>Short Motivation Statement *</label>
+                    <textarea rows="3" id="w-motivation" placeholder="Briefly describe how this Master's aligns with your career goals..."></textarea>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-top:20px;">
+                    <button class="btn-outline-blue" onclick="goToWizardStep(2)">Previous Step</button>
+                    <button class="btn-primary" onclick="nextWizardStep(3)">Next: Step 4 of 5</button>
+                </div>
+            </div>
+
+            <!-- STEP 4 OF 5 -->
+            <div class="wizard-panel" id="wiz-panel-4">
+                <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:16px;">
+                    Please upload your required admission documents below (PDF or DOCX format).
+                </p>
+                <div class="form-group">
+                    <label>1. Curriculum Vitae (CV) *</label>
+                    <input type="file" id="w-doc-cv">
+                </div>
+                <div class="form-group">
+                    <label>2. Letter of Intent *</label>
+                    <input type="file" id="w-doc-intent">
+                </div>
+                <div class="form-group">
+                    <label>3. Admission Essay *</label>
+                    <input type="file" id="w-doc-essay">
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-top:20px;">
+                    <button class="btn-outline-blue" onclick="goToWizardStep(3)">Previous Step</button>
+                    <button class="btn-primary" onclick="nextWizardStep(4)">Next: Step 5 of 5</button>
+                </div>
+            </div>
+
+            <!-- STEP 5 OF 5 -->
+            <div class="wizard-panel" id="wiz-panel-5">
+                <h3 style="margin-bottom:12px; color:var(--primary-dark);">Review Your Application Summary</h3>
+                <div class="mock-row"><span>Applicant Name:</span><strong id="sum-name">-</strong></div>
+                <div class="mock-row"><span>Email Address:</span><strong id="sum-email">-</strong></div>
+                <div class="mock-row"><span>Undergraduate Institution & GPA:</span><strong id="sum-edu">-</strong></div>
+                <div class="mock-row"><span>Selected Program Variant:</span><strong id="sum-track">-</strong></div>
+                <div class="mock-row"><span>Uploaded Documents (CV, Letter of Intent, Essay):</span><span class="badge badge-success">3 of 3 Verified</span></div>
+                <div style="display:flex; justify-content:space-between; margin-top:22px;">
+                    <button class="btn-outline-blue" onclick="goToWizardStep(4)">Previous Step</button>
+                    <button class="btn-primary" onclick="completeWizardSubmission()">Submit Final Application</button>
+                </div>
+            </div>
+
+            <!-- ON-SCREEN CONFIRMATION & EMAIL RECEIPT -->
+            <div class="wizard-panel" id="wiz-panel-success">
+                <div style="background:#ecfdf5; border:1px solid #a7f3d0; padding:26px; border-radius:14px; text-align:center;">
+                    <span class="badge badge-success" style="margin-bottom:10px;">Application Confirmed</span>
+                    <h3 style="color:#065f46; margin-bottom:8px;">On-Screen Confirmation: Application Successfully Submitted</h3>
+                    <p style="font-size:0.9rem; color:#047857; margin-bottom:18px;">
+                        Your application has been registered under ID <strong>#SNSPA-PM-2026-849</strong> and routed to the Faculty Admissions Committee.
+                    </p>
+                    <div style="background:white; text-align:left; padding:18px; border-radius:10px; border:1px solid #d1fae5; font-size:0.84rem; margin-bottom:20px;">
+                        <p style="margin-bottom:6px;"><strong>Automated Email Receipt Sent To:</strong> <span id="receipt-email">applicant@comunicare.ro</span></p>
+                        <p style="margin-bottom:6px;"><strong>Subject:</strong> Confirmation of Application Receipt - PM MasterHub (SNSPA)</p>
+                        <p style="color:var(--text-muted);"><strong>Message Preview:</strong> Dear Applicant, thank you for applying to the Master's Program in Project Management. We have received your Personal Info, Academic Background, and 3 required documents (CV, Letter of Intent, Admission Essay). You can track your review status live in the Application Status Portal.</p>
+                    </div>
+                    <button class="btn-primary" onclick="navigateTo('status')">Go to Application Status Portal</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         4. APPLICATION STATUS PORTAL (MVP PRIORITY 4)
+         ========================================================= -->
+    <section id="page-status" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">Applicant Tracking Portal</span>
+            <h2>Application Status & On-Screen Notifications</h2>
+            <p>Monitor where you stand in the admissions process and view real-time committee notifications.</p>
+        </div>
+
+        <div class="portal-box">
+            <!-- Interactive Demo Controls for Status Verification -->
+            <div style="margin-bottom:22px; padding-bottom:16px; border-bottom:1px solid var(--border-color);">
+                <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); display:block; margin-bottom:8px;">
+                    Interactive Status Preview (Click to inspect each stage notification):
+                </span>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button class="filter-btn" id="st-btn-submitted" onclick="setAppStatus('submitted')">1. Submitted</button>
+                    <button class="filter-btn active" id="st-btn-review" onclick="setAppStatus('review')">2. Under Review</button>
+                    <button class="filter-btn" id="st-btn-missing" onclick="setAppStatus('missing')">3. Documents Missing</button>
+                    <button class="filter-btn" id="st-btn-decision" onclick="setAppStatus('decision')">4. Decision Made (Admitted)</button>
+                </div>
+            </div>
+
+            <!-- On-Screen Notification Banner -->
+            <div class="notification-banner" id="status-notification-box">
+                <div>
+                    <strong style="display:block; color:var(--primary-dark); font-size:0.92rem;" id="status-notif-title">
+                        On-Screen Notification: Your application is now under review
+                    </strong>
+                    <span style="font-size:0.84rem; color:var(--text-muted);" id="status-notif-desc">
+                        The Faculty Admissions Committee opened your file on November 12, 2026. Estimated review completion: 3-5 working days.
+                    </span>
+                </div>
+                <span class="badge badge-info" id="status-main-badge">Under Review</span>
+            </div>
+
+            <!-- Status Tracker Steps -->
+            <h3 style="font-size:1.05rem; margin-bottom:14px;">Admissions Lifecycle Tracker</h3>
+            <div class="mock-row" id="track-row-1">
+                <span>Stage 1: Application Submitted</span>
+                <span class="badge badge-success" id="track-badge-1">Completed</span>
+            </div>
+            <div class="mock-row" id="track-row-2" style="border-color:var(--primary-light); background:#eff6ff;">
+                <span>Stage 2: Faculty Committee Under Review</span>
+                <span class="badge badge-info" id="track-badge-2">Active Stage</span>
+            </div>
+            <div class="mock-row" id="track-row-3">
+                <span>Stage 3: Document Completeness Check (CV, Letter of Intent, Essay)</span>
+                <span class="badge badge-success" id="track-badge-3">Verified</span>
+            </div>
+            <div class="mock-row" id="track-row-4">
+                <span>Stage 4: Final Admissions Decision</span>
+                <span class="badge badge-warning" id="track-badge-4">Pending Decision</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         5. STUDENT DASHBOARD (MVP PRIORITY 5)
+         ========================================================= -->
+    <section id="page-dashboard" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">Current Student Portal</span>
+            <h2>My Grades & Academic Progress Dashboard</h2>
+            <p>View real-time course grades, assignment breakdowns, module completion bars, and automatic faculty updates.</p>
+        </div>
+
+        <!-- Quick Login Verification Bar -->
+        <div class="portal-box" style="margin-bottom:30px; padding:22px 30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">
+            <div>
+                <span class="badge badge-success" style="margin-bottom:4px;">Authenticated Student Session</span>
+                <h3 style="font-size:1.1rem;">Student: Stage Masters Member | Year 2, Semester 1 (Full-Time English)</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted);" id="sync-timestamp">University Grading System Sync: Active (Last updated: Just now)</p>
+            </div>
+            <button class="btn-primary" style="padding:10px 20px; font-size:0.85rem;" onclick="simulateFacultyGradePost()">
+                Simulate Faculty Grade Update
+            </button>
+        </div>
+
+        <!-- Overall Academic Summary Metrics -->
+        <div class="steps-row" style="margin-bottom:35px;">
+            <div class="step-box">
+                <h4 style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase;">Current GPA Average</h4>
+                <p style="font-size:1.9rem; font-weight:800; color:var(--primary-blue); margin-top:4px;" id="dash-gpa">9.48 / 10</p>
+            </div>
+            <div class="step-box">
+                <h4 style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase;">Credits Earned</h4>
+                <p style="font-size:1.9rem; font-weight:800; color:var(--primary-dark); margin-top:4px;">68 / 120 ECTS</p>
+            </div>
+            <div class="step-box">
+                <h4 style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase;">Active Enrollments</h4>
+                <p style="font-size:1.9rem; font-weight:800; color:var(--primary-dark); margin-top:4px;">4 Courses</p>
+            </div>
+            <div class="step-box">
+                <h4 style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase;">Internship Application</h4>
+                <p style="font-size:1.1rem; font-weight:700; color:var(--success); margin-top:12px;">Accepted (TechFlow PM)</p>
+            </div>
+        </div>
+
+        <!-- Course Enrollments, Breakdowns & Color-Coded Progress Bars -->
+        <div class="cards-grid">
+            <div class="data-card">
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span class="badge badge-info">In Progress</span>
+                        <strong style="color:var(--primary-blue); font-size:1.05rem;" id="agile-overall-grade">Current Avg: 9.65</strong>
+                    </div>
+                    <h3>Agile Project Management Methodologies</h3>
+                    <div class="course-detail-list">
+                        <p><strong>Team Project (40% weight):</strong> <span id="agile-proj-grade">9.80 / 10 (Sprint 2 Prototype)</span></p>
+                        <p><strong>Seminar Engagement & Quizzes (40% weight):</strong> 9.50 / 10</p>
+                        <p><strong>Final Project Report (20% weight):</strong> Scheduled for Exam Session</p>
+                    </div>
+                </div>
+                <div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600;">
+                        <span>Module Completion Level</span>
+                        <span id="agile-pct-label">80%</span>
+                    </div>
+                    <div class="progress-track" style="margin-bottom:0;">
+                        <div class="progress-bar-fill" id="agile-bar" style="width: 80%; background: var(--primary-light);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-card">
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span class="badge badge-success">Completed</span>
+                        <strong style="color:var(--success); font-size:1.05rem;">Final Grade: 9.50</strong>
+                    </div>
+                    <h3>Risk Management</h3>
+                    <div class="course-detail-list">
+                        <p><strong>Risk Identification Assignment (30%):</strong> 9.40 / 10</p>
+                        <p><strong>Mitigation Register Project (40%):</strong> 9.60 / 10</p>
+                        <p><strong>Final Examination (30%):</strong> 9.50 / 10</p>
+                    </div>
+                </div>
+                <div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600;">
+                        <span>Module Completion Level</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-track" style="margin-bottom:0;">
+                        <div class="progress-bar-fill" style="width: 100%; background: var(--success);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-card">
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span class="badge badge-warning">Mid-Semester</span>
+                        <strong style="color:var(--warning); font-size:1.05rem;">Current Avg: 9.25</strong>
+                    </div>
+                    <h3>Applications for Project Management</h3>
+                    <div class="course-detail-list">
+                        <p><strong>Software Lab Simulations (40%):</strong> 9.30 / 10</p>
+                        <p><strong>Scheduling Portfolio (30%):</strong> 9.20 / 10</p>
+                        <p><strong>Final Practical Test (30%):</strong> Pending</p>
+                    </div>
+                </div>
+                <div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600;">
+                        <span>Module Completion Level</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress-track" style="margin-bottom:0;">
+                        <div class="progress-bar-fill" style="width: 65%; background: var(--warning);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-card">
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span class="badge badge-success">Completed</span>
+                        <strong style="color:var(--success); font-size:1.05rem;">Final Grade: 9.55</strong>
+                    </div>
+                    <h3>Monitoring and Performance Indicators</h3>
+                    <div class="course-detail-list">
+                        <p><strong>KPI Framework Design (50%):</strong> 9.60 / 10</p>
+                        <p><strong>Evaluation Case Study (50%):</strong> 9.50 / 10</p>
+                        <p><strong>Status:</strong> Official Grade Recorded</p>
+                    </div>
+                </div>
+                <div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600;">
+                        <span>Module Completion Level</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-track" style="margin-bottom:0;">
+                        <div class="progress-bar-fill" style="width: 100%; background: var(--success);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         6. SUPPORTING NAVIGATION PAGES (FACULTY, INTERNSHIPS, ALUMNI, CONTACT)
+         ========================================================= -->
+    <section id="page-faculty" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">Academic & Practitioner Leadership</span>
+            <h2>Instructors & Faculty Profiles</h2>
+            <p>Our professors combine academic rigor with hands-on consulting and PMP-certified industry experience.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="data-card">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Master's Coordinator</span></div>
+                    <h3>Assoc. Prof. Dr. Loredana Vladu</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:10px 0;">Coordinates the Master's Program in Project Management at SNSPA, specializing in organizational communication and governance.</p>
+                    <p style="font-size:0.82rem;"><strong>Contact:</strong> loredana.vladu@comunicare.ro</p>
+                </div>
+            </div>
+            <div class="data-card">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">PMP Certified</span><span class="meta-tag">PMBOK & Agile</span></div>
+                    <h3>Prof. Dr. Simona Bonghez, PMP</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:10px 0;">Senior project management trainer and researcher leading Project Management I, Project Management II, and Agile Methodologies.</p>
+                    <p style="font-size:0.82rem;"><strong>Contact:</strong> mpi@comunicare.ro</p>
+                </div>
+            </div>
+            <div class="data-card">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Agile & Scrum</span><span class="meta-tag">Course Coordinator</span></div>
+                    <h3>C.d.a. Adina Grigoroiu</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:10px 0;">Agile Project Management specialist guiding student teams through Scrum sprints, Kanban workflows, and product prototyping.</p>
+                    <p style="font-size:0.82rem;"><strong>Contact:</strong> adina.grigoroiu@comunicare.ro</p>
+                </div>
+            </div>
+            <div class="data-card">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Risk & Audit</span></div>
+                    <h3>Assoc. Prof. Dr. Sergiu Stan</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:10px 0;">Expert in Risk Management Systems, project evaluation, and formal project auditing across public and private sectors.</p>
+                    <p style="font-size:0.82rem;"><strong>Contact:</strong> mpi@comunicare.ro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-internships" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">Career & Practical Experience</span>
+            <h2>Available Internships & Practice Opportunities</h2>
+            <p>Browse partner internships curated for Project Management Master's students.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="data-card">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Paid</span><span class="meta-tag">IT & Agile</span><span class="meta-tag">Part-Time</span></div>
+                    <h3>Junior Agile Project Manager Intern</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0;"><strong>Company:</strong> TechFlow Solutions Bucharest | Duration: 3 Months</p>
+                    <p style="font-size:0.84rem;">Support sprint planning, backlog refinement, and velocity tracking for software delivery teams.</p>
+                </div>
+                <button class="btn-primary" style="margin-top:15px; padding:10px;" onclick="alert('Redirecting to company application portal...')">Apply Now</button>
+            </div>
+            <div class="data-card">
+                <div>
+                    <div class="meta-tags"><span class="meta-tag">Paid</span><span class="meta-tag">EU Grants</span><span class="meta-tag">Full-Time</span></div>
+                    <h3>European Funds Implementation Assistant</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0;"><strong>Company:</strong> EuroGrant Consulting | Duration: 6 Months</p>
+                    <p style="font-size:0.84rem;">Assist senior consultants with grant reporting, procurement documentation, and milestone tracking.</p>
+                </div>
+                <button class="btn-primary" style="margin-top:15px; padding:10px;" onclick="alert('Redirecting to company application portal...')">Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-alumni" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">Alumni Voices</span>
+            <h2>Graduate Testimonials & Career Impact</h2>
+            <p>Read how graduates applied their Master's experience in consulting, IT design, and finance.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="data-card">
+                <p style="font-style:italic; font-size:0.88rem; margin-bottom:14px;">
+                    "In most courses, I met very involved and open professors, with whom I could have various discussions. A big surprise for me was to find a very involved and present team, with whom I was able to collaborate with pleasure and even make friends."
+                </p>
+                <div><strong>Isabel Chibrit</strong><p style="font-size:0.8rem; color:var(--text-muted);">Business Consultant</p></div>
+            </div>
+            <div class="data-card">
+                <p style="font-style:italic; font-size:0.88rem; margin-bottom:14px;">
+                    "I realized how important the team building stage is, not just in terms of dividing roles, but of really getting to know people... I discovered that I have a penchant for empathetic leadership, meaning paying attention to people and team dynamics, not just to objectives."
+                </p>
+                <div><strong>Alexandra Avasiloaiei</strong><p style="font-size:0.8rem; color:var(--text-muted);">UX/UI Designer</p></div>
+            </div>
+            <div class="data-card">
+                <p style="font-style:italic; font-size:0.88rem; margin-bottom:14px;">
+                    "It may sound like I'm exaggerating, but the master's period was one of the best: I met people from different fields, passionate professionals, and it was interesting to work together on projects, each using the knowledge and experience we had accumulated up to that point."
+                </p>
+                <div><strong>Ramona Bumbea</strong><p style="font-size:0.8rem; color:var(--text-muted);">Senior Transfer Pricing Consultant</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-contact" class="page-view section">
+        <div class="section-header">
+            <span class="section-tag">Program Secretariat & Coordination</span>
+            <h2>Contact Information</h2>
+            <p>Reach out to the Project Management Master's coordination team at SNSPA.</p>
+        </div>
+        <div class="portal-box">
+            <h3 style="margin-bottom:12px;">College of Communication and Public Relations (SNSPA)</h3>
+            <p style="margin-bottom:8px;"><strong>Program Coordinator:</strong> Associate Professor Dr. Loredana Vladu (loredana.vladu@comunicare.ro)</p>
+            <p style="margin-bottom:8px;"><strong>Master's Program Email:</strong> mpi@comunicare.ro</p>
+            <p style="margin-bottom:8px;"><strong>Address:</strong> Bulevardul Expozitiei, nr. 30A, sector 1, Bucuresti</p>
+            <p><strong>Official Website:</strong> www.comunicare.ro</p>
+        </div>
+    </section>
+
+    <!-- SYLLABUS VIEW / DOWNLOAD MODAL -->
+    <div class="modal-overlay" id="syllabus-modal">
+        <div class="modal-card">
+            <span class="badge badge-info" style="margin-bottom:8px;">Official Course Syllabus</span>
+            <h3 id="mod-title" style="margin-bottom:10px; color:var(--primary-dark);">Course Title</h3>
+            <p style="font-size:0.86rem; margin-bottom:6px;"><strong>Instructor:</strong> <span id="mod-instructor"></span></p>
+            <p style="font-size:0.86rem; margin-bottom:6px;"><strong>Credits & Duration:</strong> <span id="mod-credits"></span></p>
+            <p style="font-size:0.86rem; margin-bottom:12px;"><strong>Prerequisites:</strong> <span id="mod-prereq"></span></p>
+            <div style="background:var(--bg-light); padding:14px; border-radius:10px; border:1px solid var(--border-color); font-size:0.85rem; margin-bottom:20px;">
+                <strong>Course Objectives & Key Learning Outcomes:</strong>
+                <p id="mod-desc" style="margin-top:6px; color:var(--text-muted);"></p>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button class="btn-outline-blue" onclick="closeSyllabusModal()">Close Preview</button>
+                <button class="btn-primary" style="padding:9px 20px; font-size:0.85rem;" onclick="alert('Syllabus PDF downloaded successfully.'); closeSyllabusModal();">Download PDF Syllabus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>PM MasterHub (SNSPA)</h4>
+                <p style="font-size:0.84rem;">Master's Degree in Project Management, accredited by the PMI Global Accreditation Center (GAC).</p>
+            </div>
+            <div class="footer-col">
+                <h4>Main Navigation</h4>
+                <a onclick="navigateTo('home')">Home Page</a>
+                <a onclick="navigateTo('curriculum')">Program Curriculum</a>
+                <a onclick="navigateTo('faculty')">Faculty & Instructors</a>
+                <a onclick="navigateTo('internships')">Internships</a>
+                <a onclick="navigateTo('alumni')">Alumni Testimonials</a>
+            </div>
+            <div class="footer-col">
+                <h4>Student Portals</h4>
+                <a onclick="navigateTo('apply')">Application Wizard</a>
+                <a onclick="navigateTo('status')">Application Status</a>
+                <a onclick="navigateTo('dashboard')">Student Dashboard (Login)</a>
+                <a onclick="navigateTo('contact')">Contact</a>
+            </div>
+        </div>
+        <div style="text-align:center; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; font-size:0.8rem;">
+            2026 SNSPA Project Management Master Program | Prototype by Team Stage Masters
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SPA Navigation Router
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + pageId);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) activeNav.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Curriculum Year Filter
+        function filterCurriculum(filter, btnElement) {
+            document.querySelectorAll('#page-curriculum .filter-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            document.querySelectorAll('#curriculum-grid .data-card').forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-year') === filter) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Syllabus Modal Controls
+        function openSyllabusModal(title, instructor, credits, prereq, desc) {
+            document.getElementById('mod-title').innerText = title;
+            document.getElementById('mod-instructor').innerText = instructor;
+            document.getElementById('mod-credits').innerText = credits;
+            document.getElementById('mod-prereq').innerText = prereq;
+            document.getElementById('mod-desc').innerText = desc;
+            document.getElementById('syllabus-modal').classList.add('active');
+        }
+
+        function closeSyllabusModal() {
+            document.getElementById('syllabus-modal').classList.remove('active');
+        }
+
+        // 5-Step Application Wizard Logic with Automatic Field Validation
+        const stepTitles = [
+            "Step 1 of 5: Personal Information",
+            "Step 2 of 5: Educational Background",
+            "Step 3 of 5: Program Track & Motivation",
+            "Step 4 of 5: Documents Upload",
+            "Step 5 of 5: Review & Submit"
+        ];
+
+        function nextWizardStep(currentStep) {
+            const alertBox = document.getElementById('wiz-alert');
+            let valid = true;
+
+            if (currentStep === 1) {
+                if (!document.getElementById('w-name').value.trim() ||
+                    !document.getElementById('w-email').value.trim() ||
+                    !document.getElementById('w-phone').value.trim()) valid = false;
+            } else if (currentStep === 2) {
+                if (!document.getElementById('w-uni').value.trim() ||
+                    !document.getElementById('w-degree').value.trim() ||
+                    !document.getElementById('w-gpa').value.trim()) valid = false;
+            } else if (currentStep === 3) {
+                if (!document.getElementById('w-track').value ||
+                    !document.getElementById('w-role').value.trim() ||
+                    !document.getElementById('w-motivation').value.trim()) valid = false;
+            } else if (currentStep === 4) {
+                if (!document.getElementById('w-doc-cv').value ||
+                    !document.getElementById('w-doc-intent').value ||
+                    !document.getElementById('w-doc-essay').value) valid = false;
+            }
+
+            if (!valid) {
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            alertBox.style.display = 'none';
+            if (currentStep === 4) {
+                document.getElementById('sum-name').innerText = document.getElementById('w-name').value;
+                document.getElementById('sum-email').innerText = document.getElementById('w-email').value;
+                document.getElementById('sum-edu').innerText = document.getElementById('w-uni').value + " (GPA: " + document.getElementById('w-gpa').value + ")";
+                document.getElementById('sum-track').innerText = document.getElementById('w-track').value;
+            }
+            goToWizardStep(currentStep + 1);
+        }
+
+        function goToWizardStep(stepNum) {
+            document.getElementById('wiz-alert').style.display = 'none';
+            document.querySelectorAll('.wizard-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('wiz-panel-' + stepNum).classList.add('active');
+
+            const pct = stepNum * 20;
+            document.getElementById('wiz-progress-bar').style.width = pct + '%';
+            document.getElementById('wiz-pct-text').innerText = pct + '% Completed';
+            document.getElementById('wiz-step-text').innerText = stepTitles[stepNum - 1];
+
+            for (let i = 1; i <= 5; i++) {
+                const pill = document.getElementById('pill-' + i);
+                pill.classList.remove('active', 'completed');
+                if (i < stepNum) pill.classList.add('completed');
+                if (i === stepNum) pill.classList.add('active');
+            }
+        }
+
+        function completeWizardSubmission() {
+            document.querySelectorAll('.wizard-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('wiz-panel-success').classList.add('active');
+            document.getElementById('receipt-email').innerText = document.getElementById('w-email').value;
+            document.getElementById('wiz-step-text').innerText = "Application Completed (5 of 5)";
+        }
+
+        // Application Status Interactive State Switcher
+        function setAppStatus(state) {
+            document.querySelectorAll('#page-status .filter-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('st-btn-' + state).classList.add('active');
+
+            const title = document.getElementById('status-notif-title');
+            const desc = document.getElementById('status-notif-desc');
+            const badge = document.getElementById('status-main-badge');
+            const b2 = document.getElementById('track-badge-2');
+            const b3 = document.getElementById('track-badge-3');
+            const b4 = document.getElementById('track-badge-4');
+
+            badge.className = 'badge';
+            if (state === 'submitted') {
+                title.innerText = "On-Screen Notification: Application Submitted Successfully";
+                desc.innerText = "We have received your application packet. It is queued for initial verification.";
+                badge.classList.add('badge-info');
+                badge.innerText = "Submitted";
+                b2.className = 'badge badge-warning'; b2.innerText = "Queued";
+                b3.className = 'badge badge-warning'; b3.innerText = "Pending Check";
+                b4.className = 'badge badge-warning'; b4.innerText = "Pending";
+            } else if (state === 'review') {
+                title.innerText = "On-Screen Notification: Your application is now under review";
+                desc.innerText = "The Faculty Admissions Committee is actively reviewing your academic records and essay.";
+                badge.classList.add('badge-info');
+                badge.innerText = "Under Review";
+                b2.className = 'badge badge-info'; b2.innerText = "Active Stage";
+                b3.className = 'badge badge-success'; b3.innerText = "Verified";
+                b4.className = 'badge badge-warning'; b4.innerText = "Pending Decision";
+            } else if (state === 'missing') {
+                title.innerText = "Action Required Notification: Documents Missing from Application";
+                desc.innerText = "Please upload a signed copy of your Bachelor's Diploma Supplement by November 18, 2026.";
+                badge.classList.add('badge-danger');
+                badge.innerText = "Documents Missing";
+                b2.className = 'badge badge-warning'; b2.innerText = "Paused";
+                b3.className = 'badge badge-danger'; b3.innerText = "Document Missing";
+                b4.className = 'badge badge-warning'; b4.innerText = "On Hold";
+            } else if (state === 'decision') {
+                title.innerText = "Official Decision Notification: Congratulations, You Have Been Admitted";
+                desc.innerText = "The Admissions Committee has approved your enrollment into the Master's Program in Project Management.";
+                badge.classList.add('badge-success');
+                badge.innerText = "Decision Made: Admitted";
+                b2.className = 'badge badge-success'; b2.innerText = "Completed";
+                b3.className = 'badge badge-success'; b3.innerText = "Verified";
+                b4.className = 'badge badge-success'; b4.innerText = "Admitted";
+            }
+        }
+
+        // Student Dashboard Live Grade Update Simulator
+        function simulateFacultyGradePost() {
+            document.getElementById('agile-proj-grade').innerText = "10.00 / 10 (Updated by Faculty)";
+            document.getElementById('agile-overall-grade').innerText = "Current Avg: 9.80";
+            document.getElementById('agile-pct-label').innerText = "90%";
+            document.getElementById('agile-bar').style.width = "90%";
+            document.getElementById('dash-gpa').innerText = "9.56 / 10";
+            document.getElementById('sync-timestamp').innerText = "Automatic Grading System Update Received: Agile Project Management grade updated to 10.00";
+        }
+    </script>
+</body>
+</html>
