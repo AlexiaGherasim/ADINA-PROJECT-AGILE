@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master in Project Management — FCRP | SNSPA</title>
+    <title>Master in Project Management - FCRP | SNSPA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
@@ -1448,7 +1448,8 @@
             <span class="hero-kicker">College of Communication and Public Relations • PMI GAC Accredited</span>
             <h1>Master in Project Management</h1>
             <p class="hero-photo-lead">
-                Empowering future project leaders to plan, finance, and deliver high-impact initiatives across private enterprises, public institutions, and European-funded programs.
+                A practical two-year master’s program that teaches you how to turn ideas into finished projects, lead teams, and build a career in project management.
+</p>
             </p>
             <div class="hero-banner-actions">
                 <button class="btn-banner-magenta" onclick="navigateTo('apply')">Apply Now</button>
@@ -1484,12 +1485,12 @@
         </section>
 
         <div class="container">
-            <!-- Clear Program Overview: Who This Master's Program Is For & Key Benefits -->
+           <!-- Clear Program Overview: Who It Is For & Key Benefits -->
             <div class="section-head">
                 <div>
-                    <h2>Program Overview: Who It Is For & Key Benefits</h2>
+                    <h2>Program Overview</h2>
                     <p>
-                        This two-year Master in Project Management is designed for recent graduates, project coordinators, public-sector specialists, and aspiring team leads seeking structured leadership capabilities, international PMI-aligned standards, and accelerated career growth across IT, consulting, and EU-funded sectors.
+                        Whether you just finished your Bachelor's degree or already work in a team, this program helps you build the practical skills to organize projects, lead people, and grow your career in business, tech, or European-funded initiatives.
                     </p>
                 </div>
                 <div class="flex-wrap gap-2">
@@ -1500,22 +1501,22 @@
 
             <div class="split-grid mb-3">
                 <div class="panel">
-                    <h3>Who This Master's Program Is For</h3>
+                    <h3>Who This Program Is For</h3>
                     <ul class="clean-list">
-                        <li><strong>Project & Product Coordinators:</strong> Professionals formalizing their practice toward Project Manager, Scrum Master, or PMO roles.</li>
-                        <li><strong>EU Funds & Public Sector Specialists:</strong> Practitioners managing non-reimbursable grants, structural instruments, and public investments.</li>
-                        <li><strong>Founders & Operational Leads:</strong> Entrepreneurs structuring product delivery, budgeting, and risk governance.</li>
-                        <li><strong>Consultants & Business Analysts:</strong> Graduates and specialists seeking alignment with international PMI standards.</li>
+                        <li><strong>Recent Graduates:</strong> Looking for a practical master's degree that opens doors in any industry.</li>
+                        <li><strong>Junior Team Members:</strong> Ready to step up from executing tasks to coordinating projects and teams.</li>
+                        <li><strong>EU Funds & Public Sector Beginners:</strong> Interested in writing and managing European-funded projects.</li>
+                        <li><strong>Future Entrepreneurs:</strong> Wanting to turn business ideas into well-structured, successful projects.</li>
                     </ul>
                 </div>
 
                 <div class="panel">
-                    <h3>Key Benefits & Industry Relevance</h3>
+                    <h3>Key Benefits</h3>
                     <ul class="clean-list">
-                        <li><strong>Career Growth & International Recognition:</strong> The only program in Romania accredited by the PMI Global Accreditation Center (2026–2032).</li>
-                        <li><strong>Industry-Relevant Methodology:</strong> Balanced training in predictive planning (WBS, Critical Path, Earned Value) and Agile delivery (Scrum, Kanban).</li>
-                        <li><strong>Practitioner Faculty:</strong> Courses led by PMP-certified consultants, EU grant evaluators, and academic researchers.</li>
-                        <li><strong>Flexible Study Tracks:</strong> Available in both IF (cu frecvență) and IFR (frecvență redusă) formats in English and Romanian.</li>
+                        <li><strong>Internationally Recognized Diploma:</strong> The only master's in Romania accredited by PMI (Global Accreditation Center).</li>
+                        <li><strong>Learn by Doing:</strong> Practical workshops, real case studies, and team simulations instead of dry theory.</li>
+                        <li><strong>Teachers Who Work in the Field:</strong> Learn directly from active project managers and industry specialists.</li>
+                        <li><strong>Schedule Built Around Your Life:</strong> Choose between regular classes (IF) or weekend-friendly format (IFR).</li>
                     </ul>
                 </div>
             </div>
