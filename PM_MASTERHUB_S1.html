@@ -1,0 +1,3424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master in Project Management - FCRP | SNSPA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0c1b33;
+            --navy-soft: #162a4c;
+            --accent: #1d4ed8;
+            --accent-hover: #1e40af;
+            --magenta: #c02669;
+            --magenta-hover: #9d174d;
+            --magenta-soft: #fdf2f8;
+            --magenta-border: #fbcfe8;
+            --bg-page: #f9fafb;
+            --bg-surface: #ffffff;
+            --bg-subtle: #f3f4f6;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --border-strong: #d1d5db;
+            --success: #065f46;
+            --success-bg: #ecfdf5;
+            --warning: #92400e;
+            --warning-bg: #fffbeb;
+            --danger: #991b1b;
+            --danger-bg: #fef2f2;
+            --radius: 6px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-page);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, .serif {
+            font-family: 'Newsreader', Georgia, serif;
+            letter-spacing: -0.015em;
+        }
+
+        /* INSTITUTIONAL TOP BAR */
+        .top-strip {
+            background: var(--navy);
+            color: #cbd5e1;
+            font-size: 0.78rem;
+            padding: 7px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .top-strip-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .top-strip strong {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        /* MAIN HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 5%;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 68px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--navy);
+            cursor: pointer;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            background: var(--navy);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--magenta);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--navy);
+        }
+
+        .brand-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-link:hover {
+            color: var(--navy);
+            background: var(--bg-subtle);
+        }
+
+        .nav-link.active {
+            color: var(--navy);
+            font-weight: 600;
+            background: #eff6ff;
+            box-shadow: inset 0 -2px 0 var(--magenta);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-pill {
+            display: none;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 11px;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--navy);
+            background: var(--bg-page);
+            cursor: pointer;
+        }
+
+        .user-pill.visible {
+            display: inline-flex;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 9px 18px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1px solid transparent;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: #ffffff;
+            border-color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            background: var(--navy-soft);
+        }
+
+        .btn-accent {
+            background: var(--magenta);
+            color: #ffffff;
+            border-color: var(--magenta);
+        }
+
+        .btn-accent:hover {
+            background: var(--magenta-hover);
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            color: var(--text-primary);
+            border-color: var(--border-strong);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-subtle);
+            border-color: #9ca3af;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--magenta);
+            padding: 6px 10px;
+            font-size: 0.82rem;
+        }
+
+        .btn-ghost:hover {
+            background: var(--magenta-soft);
+        }
+
+        .btn-danger-outline {
+            background: #ffffff;
+            color: var(--danger);
+            border-color: #fecaca;
+        }
+
+        .btn-danger-outline:hover {
+            background: var(--danger-bg);
+        }
+
+        .btn-sm {
+            padding: 7px 14px;
+            font-size: 0.82rem;
+        }
+
+        /* PAGE VIEWS */
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 5%;
+        }
+
+        /* FULL-BLEED INSTITUTIONAL PHOTO BANNER */
+        .hero-photo-banner {
+            width: 100%;
+            min-height: 520px;
+            background:
+                linear-gradient(180deg, rgba(12, 27, 51, 0.65) 0%, rgba(12, 27, 51, 0.78) 65%, rgba(12, 27, 51, 0.92) 100%),
+                url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=85') center 30%/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 72px 5% 60px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .hero-crest {
+            width: 56px;
+            height: 56px;
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 3px solid var(--magenta);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            background: rgba(12, 27, 51, 0.55);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-crest-top {
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #cbd5e1;
+            line-height: 1;
+        }
+
+        .hero-crest-main {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-top: 2px;
+        }
+
+        .hero-kicker {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+
+        .hero-photo-banner h1 {
+            font-size: 3.25rem;
+            font-weight: 600;
+            line-height: 1.12;
+            color: #ffffff;
+            max-width: 820px;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-photo-lead {
+            font-size: 1.08rem;
+            color: #f1f5f9;
+            max-width: 680px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .hero-banner-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn-banner-magenta {
+            background: var(--magenta);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 13px 28px;
+            border-radius: 4px;
+            border: 1px solid var(--magenta);
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+
+        .btn-banner-magenta:hover {
+            background: var(--magenta-hover);
+            border-color: var(--magenta-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-banner-light {
+            background: rgba(255, 255, 255, 0.96);
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 13px 28px;
+            border-radius: 4px;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+
+        .btn-banner-light:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .hero-scroll-tick {
+            width: 1px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.45);
+            margin-top: 32px;
+        }
+
+        /* KEY SPECIFICATIONS BAR UNDER BANNER */
+        .specs-strip-wrapper {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            padding: 24px 5%;
+        }
+
+        .specs-strip-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            align-items: center;
+        }
+
+        .spec-cell {
+            border-right: 1px solid var(--border);
+            padding-right: 16px;
+        }
+
+        .spec-cell:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .spec-cell dt {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .spec-cell dd {
+            font-size: 0.94rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--magenta);
+            margin-bottom: 12px;
+        }
+
+        /* SECTION HEADERS */
+        .section-head {
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-head h2 {
+            font-size: 1.95rem;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .section-head p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            max-width: 680px;
+            margin-top: 6px;
+        }
+
+        /* TWO-COLUMN OVERVIEW */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .panel h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .clean-list {
+            list-style: none;
+        }
+
+        .clean-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .clean-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .clean-list strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* CLEAN EDITORIAL TIMELINE FOR APPLICATION PROCESS */
+        .process-timeline-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+        }
+
+        .timeline-track {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .timeline-node {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timeline-node:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 17px;
+            left: 44px;
+            right: -12px;
+            height: 1.5px;
+            background: var(--border-strong);
+        }
+
+        .node-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-page);
+            border: 1.5px solid var(--navy);
+            color: var(--navy);
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-node:first-child .node-badge {
+            background: var(--navy);
+            color: #ffffff;
+        }
+
+        .timeline-node:last-child .node-badge {
+            border-color: var(--magenta);
+            color: var(--magenta);
+        }
+
+        .timeline-node h4 {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .timeline-node p {
+            font-size: 0.81rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .timeline-chip {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+
+        /* BADGES */
+        .tag {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 4px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+        }
+
+        .tag-neutral { background: var(--bg-subtle); color: var(--text-secondary); border-color: var(--border); }
+        .tag-info { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
+        .tag-magenta { background: var(--magenta-soft); color: var(--magenta); border-color: var(--magenta-border); }
+        .tag-success { background: var(--success-bg); color: var(--success); border-color: #a7f3d0; }
+        .tag-warning { background: var(--warning-bg); color: var(--warning); border-color: #fde68a; }
+        .tag-danger { background: var(--danger-bg); color: var(--danger); border-color: #fecaca; }
+
+        /* FILTER & SEARCH TOOLBARS */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 22px;
+            background: var(--bg-surface);
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .filter-controls {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tab-group {
+            display: inline-flex;
+            background: var(--bg-subtle);
+            padding: 3px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: var(--bg-surface);
+            color: var(--navy);
+            font-weight: 600;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+        }
+
+        .filter-select, .search-box {
+            padding: 7px 12px;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 0.84rem;
+            color: var(--text-primary);
+            background: var(--bg-surface);
+        }
+
+        .search-box {
+            min-width: 240px;
+        }
+
+        .filter-select:focus, .search-box:focus {
+            outline: none;
+            border-color: var(--navy);
+        }
+
+        /* CURRICULUM TABLE */
+        .course-table-wrap {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow-x: auto;
+        }
+
+        table.academic-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.86rem;
+        }
+
+        table.academic-table th {
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table.academic-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        table.academic-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table.academic-table tr:hover td {
+            background: #fafafa;
+        }
+
+        .course-title-cell strong {
+            display: block;
+            color: var(--navy);
+            font-size: 0.92rem;
+            margin-bottom: 3px;
+        }
+
+        .course-title-cell span {
+            color: var(--text-secondary);
+            font-size: 0.81rem;
+            display: block;
+            max-width: 440px;
+        }
+
+        /* CARDS GRID */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+            gap: 20px;
+        }
+
+        .card-clean {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-clean h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        /* INSTRUCTOR PROFILE HEADSHOT & DETAILS */
+        .instructor-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .headshot-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            background: var(--navy);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Newsreader', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .meta-block {
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            margin: 12px 0 16px;
+            font-size: 0.82rem;
+        }
+
+        .meta-block p {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .meta-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .meta-block strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .impact-note {
+            border-left: 2px solid var(--magenta);
+            padding-left: 12px;
+            margin: 14px 0 18px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .impact-note strong {
+            display: block;
+            color: var(--navy);
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 2px;
+        }
+
+        .req-list {
+            margin: 10px 0 16px 18px;
+            font-size: 0.83rem;
+            color: var(--text-secondary);
+        }
+
+        .req-list li {
+            margin-bottom: 4px;
+        }
+
+        /* PROGRAM SELECTION 3-BOX GRID (ONLY 3 REAL PROGRAMS NOW) */
+        .program-boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 14px 0 18px;
+        }
+
+        .program-choice-box {
+            border: 1.5px solid var(--border-strong);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            background: var(--bg-surface);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 112px;
+            user-select: none;
+        }
+
+        .program-choice-box:hover {
+            border-color: var(--navy);
+            background: var(--bg-page);
+        }
+
+        .program-choice-box.selected-first {
+            border-color: var(--navy);
+            background: #eff6ff;
+            box-shadow: 0 0 0 2px rgba(12, 27, 51, 0.12);
+        }
+
+        .program-choice-box.selected-second {
+            border-color: var(--magenta);
+            background: var(--magenta-soft);
+            box-shadow: 0 0 0 2px rgba(192, 38, 105, 0.12);
+        }
+
+        .program-choice-box.disabled-box {
+            opacity: 0.48;
+            cursor: not-allowed;
+            background: var(--bg-subtle);
+        }
+
+        .choice-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .choice-title {
+            font-weight: 700;
+            font-size: 0.96rem;
+            color: var(--navy);
+        }
+
+        .choice-sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .selection-summary-bar {
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            font-size: 0.84rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* FORMS & WIZARD */
+        .narrow-box {
+            max-width: 780px;
+            margin: 0 auto;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .stepper {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .step-item {
+            padding: 10px 8px;
+            text-align: center;
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            background: var(--bg-page);
+            border-right: 1px solid var(--border);
+        }
+
+        .step-item:last-child {
+            border-right: none;
+        }
+
+        .step-item.active {
+            background: var(--navy);
+            color: #ffffff;
+            font-weight: 600;
+            border-bottom: 2px solid var(--magenta);
+        }
+
+        .step-item.done {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .wizard-panel {
+            display: none;
+        }
+
+        .wizard-panel.active {
+            display: block;
+        }
+
+        .form-field {
+            margin-bottom: 16px;
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            background: #ffffff;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(12, 27, 51, 0.08);
+        }
+
+        .form-field input.is-invalid,
+        .form-field select.is-invalid,
+        .form-field textarea.is-invalid {
+            border-color: var(--danger);
+            background: var(--danger-bg);
+        }
+
+        .alert-box {
+            display: none;
+            padding: 11px 14px;
+            border-radius: var(--radius);
+            font-size: 0.84rem;
+            margin-bottom: 18px;
+            border: 1px solid;
+        }
+
+        .alert-danger {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border-color: #fecaca;
+        }
+
+        .notice-bar {
+            padding: 14px 18px;
+            border-radius: var(--radius);
+            border: 1px solid #bfdbfe;
+            background: #eff6ff;
+            margin-bottom: 16px;
+            font-size: 0.86rem;
+        }
+
+        .kv-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+            font-size: 0.86rem;
+            background: var(--bg-page);
+            gap: 12px;
+        }
+
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* APPLICATION STATUS CARDS (COLOR-CODED BOXES) */
+        .app-status-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            margin-bottom: 18px;
+        }
+
+        .second-option-field {
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px 14px;
+            margin-top: 10px;
+            font-size: 0.84rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-highlight-box {
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            border: 1px solid;
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .status-box-submitted {
+            background: #eff6ff;
+            border-color: #93c5fd;
+            color: #1e3a8a;
+        }
+
+        .status-box-review {
+            background: #fffbeb;
+            border-color: #fcd34d;
+            color: #92400e;
+        }
+
+        .status-box-missing {
+            background: #fef2f2;
+            border-color: #fca5a5;
+            color: #991b1b;
+        }
+
+        .status-box-decision {
+            background: #ecfdf5;
+            border-color: #6ee7b7;
+            color: #065f46;
+        }
+
+        /* PROGRESS BAR & COLOR-CODED MODULE BARS */
+        .meter {
+            height: 8px;
+            background: var(--bg-subtle);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: var(--navy);
+            transition: width 0.35s ease, background-color 0.35s ease;
+        }
+
+        .meter-fill.bar-high { background: #059669; }   /* >= 85% */
+        .meter-fill.bar-mid  { background: #2563eb; }   /* 70% - 84% */
+        .meter-fill.bar-low  { background: #d97706; }   /* < 70% */
+
+        /* KPI STRIP IN DASHBOARD (3 COLUMNS) */
+        .kpi-strip-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+        }
+
+        .kpi-box span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .kpi-box strong {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--navy);
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* NOTIFICATION BELL IN STUDENT RECORD */
+        .bell-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #ffffff;
+            border: 1px solid var(--border-strong);
+            color: var(--navy);
+            padding: 7px 14px;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .bell-btn:hover {
+            background: var(--bg-subtle);
+        }
+
+        .bell-badge {
+            display: none;
+            background: var(--magenta);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 10px;
+        }
+
+        .bell-badge.has-new {
+            display: inline-block;
+        }
+
+        .bell-dropdown {
+            display: none;
+            background: var(--magenta-soft);
+            border: 1px solid var(--magenta-border);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 0.84rem;
+            color: var(--navy);
+        }
+
+        .bell-dropdown.open {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .record-section-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 26px 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* MODAL */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(12, 27, 51, 0.55);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-dialog {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            max-width: 560px;
+            width: 100%;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--navy);
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: var(--radius);
+            border-left: 3px solid var(--magenta);
+            font-size: 0.84rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            opacity: 0;
+            transform: translateY(16px);
+            pointer-events: none;
+            transition: all 0.22s ease;
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 48px 5% 28px;
+            margin-top: 64px;
+            font-size: 0.85rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-cols {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 32px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-cols h4 {
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .footer-cols a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 7px;
+            cursor: pointer;
+        }
+
+        .footer-cols a:hover {
+            color: #ffffff;
+        }
+
+        .footer-legal {
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.78rem;
+        }
+
+        /* UTILITY SPACING */
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .flex-wrap { display: flex; flex-wrap: wrap; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
+        .mt-2 { margin-top: 12px; }
+        .mt-3 { margin-top: 20px; }
+        .mb-1 { margin-bottom: 6px; }
+        .mb-2 { margin-bottom: 14px; }
+        .mb-3 { margin-bottom: 22px; }
+        .text-muted { color: var(--text-muted); }
+        .text-sec { color: var(--text-secondary); }
+        .text-sm { font-size: 0.85rem; }
+        .text-xs { font-size: 0.78rem; }
+
+        @media (max-width: 900px) {
+            .specs-strip-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .spec-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 10px;
+            }
+            .split-grid, .footer-cols, .grid-2, .program-boxes-grid, .timeline-track {
+                grid-template-columns: 1fr;
+            }
+            .timeline-node:not(:last-child)::after {
+                display: none;
+            }
+            .kpi-strip-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stepper {
+                grid-template-columns: 1fr;
+            }
+            .step-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .hero-photo-banner h1 {
+                font-size: 2.2rem;
+            }
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INSTITUTIONAL TOP BAR -->
+    <div class="top-strip">
+        <div class="top-strip-inner">
+            <span><strong>SNSPA</strong> - National University of Political Studies and Public Administration</span>
+            <span>Faculty of Communication and Public Relations • PMI GAC Accredited (2026-2032)</span>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <header>
+        <div class="header-inner">
+            <a class="brand" onclick="navigateTo('home')">
+                <span class="brand-mark">PM</span>
+                <span class="brand-text">
+                    <span class="brand-title">Project Management</span>
+                    <span class="brand-sub">Master's Program • FCRP SNSPA</span>
+                </span>
+            </a>
+
+            <nav aria-label="Main Navigation">
+                <button class="nav-link active" data-page="home" onclick="navigateTo('home')">Overview</button>
+                <button class="nav-link" data-page="curriculum" onclick="navigateTo('curriculum')">Curriculum</button>
+                <button class="nav-link" data-page="faculty" onclick="navigateTo('faculty')">Faculty</button>
+                <button class="nav-link" data-page="internships" onclick="navigateTo('internships')">Internships</button>
+                <button class="nav-link" data-page="alumni" onclick="navigateTo('alumni')">Alumni</button>
+                <button class="nav-link" data-page="status" onclick="navigateTo('status')">Application Status</button>
+                <button class="nav-link" data-page="contact" onclick="navigateTo('contact')">Contact</button>
+            </nav>
+
+            <div class="nav-actions">
+                <span class="user-pill" id="nav-user-chip" onclick="navigateTo('dashboard')">
+                    <span class="status-dot"></span>
+                    <span id="nav-user-name">Student</span>
+                </span>
+                <button class="btn btn-outline btn-sm" id="nav-auth-btn" onclick="handleAuthButtonClick()">Login</button>
+                <button class="btn btn-accent btn-sm" onclick="navigateTo('apply')">Apply Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         1. LANDING PAGE (HOME)
+         ========================================================= -->
+    <main id="page-home" class="page-view active">
+        <!-- Prominent Hero Section (Banner Area) -->
+        <section class="hero-photo-banner">
+            <div class="hero-crest" aria-hidden="true">
+                <span class="hero-crest-top">SNSPA</span>
+                <span class="hero-crest-main">PM</span>
+            </div>
+            <span class="hero-kicker">Faculty of Communication and Public Relations • PMI GAC Accredited</span>
+            <h1>Master in Project Management</h1>
+            <p class="hero-photo-lead">
+                A practical two-year master’s program that teaches you how to turn ideas into finished projects, lead teams, and build a career in project management.
+            </p>
+            <div class="hero-banner-actions">
+                <button class="btn-banner-magenta" onclick="navigateTo('apply')">Apply Now</button>
+                <button class="btn-banner-light" onclick="navigateTo('curriculum')">Explore the Program</button>
+            </div>
+            <div class="hero-scroll-tick" aria-hidden="true"></div>
+        </section>
+
+        <!-- Key Program Specifications Strip -->
+        <section class="specs-strip-wrapper">
+            <dl class="specs-strip-grid">
+                <div class="spec-cell">
+                    <dt>Study credits</dt>
+                    <dd>120 ECTS (2 Years / 4 Sem.)</dd>
+                </div>
+                <div class="spec-cell">
+                    <dt>Study formats</dt>
+                    <dd>IF / IFR</dd>
+                </div>
+                <div class="spec-cell">
+                    <dt>Languages</dt>
+                    <dd>English & Romanian tracks</dd>
+                </div>
+                <div class="spec-cell">
+                    <dt>Accreditation</dt>
+                    <dd>PMI Global Accreditation Center</dd>
+                </div>
+                <div class="spec-cell">
+                    <dt>Campus</dt>
+                    <dd>Bd. Expoziției 30A, Bucharest</dd>
+                </div>
+            </dl>
+        </section>
+
+        <div class="container">
+            <!-- Clear Program Overview: Who It Is For & Key Benefits -->
+            <div class="section-head">
+                <div>
+                    <h2>Program Overview</h2>
+                    <p>
+                        Whether you just finished your Bachelor's degree or already work in a team, this program helps you build the practical skills to organize projects, lead people, and grow your career in business, tech, or European-funded initiatives.
+                    </p>
+                </div>
+                <div class="flex-wrap gap-2">
+                    <button class="btn btn-outline btn-sm" onclick="navigateTo('curriculum')">View Curriculum</button>
+                    <button class="btn btn-outline btn-sm" onclick="navigateTo('faculty')">Meet Instructors</button>
+                </div>
+            </div>
+
+            <div class="split-grid mb-3">
+                <div class="panel">
+                    <h3>Who this program is for</h3>
+                    <ul class="clean-list">
+                        <li><strong>Recent Graduates:</strong> Looking for a practical master's degree that opens doors in any industry.</li>
+                        <li><strong>Junior Team Members:</strong> Ready to step up from executing tasks to coordinating projects and teams.</li>
+                        <li><strong>EU Funds & Public Sector Beginners:</strong> Interested in writing and managing European-funded projects.</li>
+                        <li><strong>Future Entrepreneurs:</strong> Wanting to turn business ideas into well-structured, successful projects.</li>
+                    </ul>
+                </div>
+
+                <div class="panel">
+                    <h3>Key Benefits</h3>
+                    <ul class="clean-list">
+                        <li><strong>Internationally recognized diploma:</strong> The only master's in Romania accredited by PMI (Global Accreditation Center).</li>
+                        <li><strong>Learn by doing:</strong> Practical workshops, real case studies, and team simulations instead of dry theory.</li>
+                        <li><strong>Teachers who work in the field:</strong> Learn directly from active project managers and industry specialists.</li>
+                        <li><strong>Schedule built around your life:</strong> Choose between regular classes (IF) or weekend-friendly format (IFR).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Visual Mock-Up of the Application Process (Clean Horizontal Timeline) -->
+            <div class="section-head mt-3">
+                <div>
+                    <h2>Application Process</h2>
+                    <p>A streamlined five-stage digital admission pathway from initial registration to committee decision.</p>
+                </div>
+                <button class="btn btn-accent btn-sm" onclick="navigateTo('apply')">Start application →</button>
+            </div>
+
+            <div class="process-timeline-card">
+                <div class="timeline-track">
+                    <div class="timeline-node">
+                        <div class="node-badge">01</div>
+                        <h4>Personal Details</h4>
+                        <p>Register your candidate profile and contact details.</p>
+                        <span class="timeline-chip">~2 mins</span>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-badge">02</div>
+                        <h4>Academic Record</h4>
+                        <p>Enter undergraduate university, degree, and final GPA.</p>
+                        <span class="timeline-chip">Transcript info</span>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-badge">03</div>
+                        <h4>Program Selection</h4>
+                        <p>Choose your 1st and 2nd options (IF / IFR, EN / RO).</p>
+                        <span class="timeline-chip">Up to 2 tracks</span>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-badge">04</div>
+                        <h4>Documentation</h4>
+                        <p>Upload required admission documents and track-specific file.</p>
+                        <span class="timeline-chip">Core + track files</span>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-badge">05</div>
+                        <h4>Status Tracking</h4>
+                        <p>Submit dossier and monitor evaluation in real time.</p>
+                        <span class="timeline-chip">Live portal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- =========================================================
+         2. CURRICULUM PAGE
+         ========================================================= -->
+    <section id="page-curriculum" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Curriculum & Course Syllabi</h2>
+                    <p>16 mandatory and specialized courses totaling 120 ECTS across four academic semesters.</p>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="navigateTo('faculty')">Meet Program Instructors →</button>
+            </div>
+
+            <div class="toolbar">
+                <div class="tab-group">
+                    <button class="tab-btn active" data-filter="all" onclick="setCurriculumFilter('all', this)">All Courses (16)</button>
+                    <button class="tab-btn" data-filter="year1" onclick="setCurriculumFilter('year1', this)">Year I - Foundations (8)</button>
+                    <button class="tab-btn" data-filter="year2" onclick="setCurriculumFilter('year2', this)">Year II - Specialization (8)</button>
+                </div>
+                <input type="text" class="search-box" id="course-search" placeholder="Filter by course title or instructor..." oninput="renderCurriculum()">
+            </div>
+
+            <div class="course-table-wrap">
+                <table class="academic-table">
+                    <thead>
+                        <tr>
+                            <th style="width:90px;">Year</th>
+                            <th>Course Title & Summary</th>
+                            <th style="width:230px;">Course Coordinator</th>
+                            <th style="width:130px;">Prerequisites</th>
+                            <th style="width:95px;">Credits</th>
+                            <th style="width:125px;">Syllabus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="curriculum-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         3. ONLINE APPLICATION DOSSIER (5-STEP WIZARD)
+         ========================================================= -->
+    <section id="page-apply" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Online Application Dossier</h2>
+                    <p>Complete all five steps below. After submission, you will be redirected to your Application Status Tracker.</p>
+                </div>
+            </div>
+
+            <div class="narrow-box">
+                <div class="flex-between mb-1">
+                    <strong style="font-size:0.88rem; color:var(--navy);" id="wiz-step-text">Step 1 of 5: Personal Information</strong>
+                    <span class="text-xs text-muted" id="wiz-pct-text">20%</span>
+                </div>
+                <div class="meter mb-3">
+                    <div class="meter-fill" id="wiz-progress-bar" style="width: 20%;"></div>
+                </div>
+
+                <div class="stepper">
+                    <div class="step-item active" id="pill-1">1. Personal Info</div>
+                    <div class="step-item" id="pill-2">2. Education</div>
+                    <div class="step-item" id="pill-3">3. Program Selection</div>
+                    <div class="step-item" id="pill-4">4. Documentation</div>
+                    <div class="step-item" id="pill-5">5. Review</div>
+                </div>
+
+                <div class="alert-box alert-danger" id="wiz-alert"></div>
+
+                <!-- STEP 1 -->
+                <div class="wizard-panel active" id="wiz-panel-1">
+                    <div class="form-field">
+                        <label for="w-name">Full Legal Name *</label>
+                        <input type="text" id="w-name" placeholder="e.g., Alexandru-Sebastian Moisei">
+                    </div>
+                    <div class="form-field">
+                        <label for="w-email">Email Address *</label>
+                        <input type="email" id="w-email" placeholder="name@example.com">
+                    </div>
+                    <div class="form-field">
+                        <label for="w-phone">Telephone Number *</label>
+                        <input type="tel" id="w-phone" placeholder="+40 7XX XXX XXX">
+                    </div>
+                    <div style="text-align:right;" class="mt-3">
+                        <button class="btn btn-primary" onclick="nextWizardStep(1)">Continue to Education →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="wizard-panel" id="wiz-panel-2">
+                    <div class="form-field">
+                        <label for="w-uni">Undergraduate University *</label>
+                        <input type="text" id="w-uni" placeholder="e.g., Academia de Studii Economice din București">
+                    </div>
+                    <div class="form-field">
+                        <label for="w-degree">Bachelor's Degree Specialization *</label>
+                        <input type="text" id="w-degree" placeholder="e.g., Economic Cybernetics / Communication">
+                    </div>
+                    <div class="form-field">
+                        <label for="w-gpa">Bachelor's Final Exam GPA (5.00 - 10.00) *</label>
+                        <input type="number" step="0.01" min="5" max="10" id="w-gpa" placeholder="e.g., 8.75">
+                    </div>
+                    <div class="flex-between mt-3">
+                        <button class="btn btn-outline" onclick="goToWizardStep(1)">← Previous</button>
+                        <button class="btn btn-primary" onclick="nextWizardStep(2)">Continue to Program Selection →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: PROGRAM SELECTION (ONLY 3 REAL PROGRAMS: RO IF, RO IFR, ENG IF) -->
+                <div class="wizard-panel" id="wiz-panel-3">
+                    <div class="flex-between mb-1" style="flex-wrap:wrap; gap:8px;">
+                        <label style="font-size:0.88rem; font-weight:600; color:var(--navy);">
+                            Select up to 2 Programs (Click 1st Option, then optionally 2nd Option) *
+                        </label>
+                        <button type="button" class="btn btn-ghost btn-sm" onclick="clearProgramChoices()">Clear Selection</button>
+                    </div>
+                    <p class="text-xs text-muted mb-2">
+                        Required track-specific admission document in the next step is determined strictly by your <strong>1st Option</strong>.
+                    </p>
+
+                    <div class="program-boxes-grid" id="program-boxes-container"></div>
+
+                    <div class="selection-summary-bar">
+                        <span>1st Option (Primary): <strong id="label-first-choice" style="color:var(--navy);">Not selected</strong></span>
+                        <span>2nd Option (Secondary): <strong id="label-second-choice" style="color:var(--magenta);">None</strong></span>
+                    </div>
+
+                    <div class="flex-between mt-3">
+                        <button class="btn btn-outline" onclick="goToWizardStep(2)">← Previous</button>
+                        <button class="btn btn-primary" onclick="nextWizardStep(3)">Continue to Documentation →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: DOCUMENTATION (OFFICIAL MASTER'S DOCUMENTS + TRACK-SPECIFIC DOCUMENT) -->
+                <div class="wizard-panel" id="wiz-panel-4">
+                    <div class="notice-bar" id="doc-requirement-notice">
+                        <strong style="display:block; color:var(--navy); margin-bottom:2px;" id="doc-req-title">
+                            Documente necesare pentru înscrierea la studii universitare de masterat
+                        </strong>
+                        <span class="text-sec" id="doc-req-desc">
+                            Upload the required admission documents (scanned copy or photo) along with the track-specific document for your 1st Option.
+                        </span>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="w-doc-birth">1. Birth certificate (scanned document or photot of document) *</label>
+                        <input type="file" id="w-doc-birth" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="w-doc-marriage">2. Marriage certificate or name change certificate (scanned document or photograph of the document)</label>
+                        <input type="file" id="w-doc-marriage" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="w-doc-id">3. Identity card (ID) (scanned document or photograph of the document) *</label>
+                        <input type="file" id="w-doc-id" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="w-doc-diploma">4. Bachelor's degree diploma or equivalent (certificate of equivalence for the bachelor's degree) (scanned document or photograph of the document) *</label>
+                        <input type="file" id="w-doc-diploma" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="w-doc-medical">5. Medical certificate issued by the family doctor (general practitioner), stating "clinically healthy for university enrollment" *</label>
+                        <input type="file" id="w-doc-medical" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="w-doc-second" id="w-doc-second-label">6. Track-Specific Required Document *</label>
+                        <input type="file" id="w-doc-second" accept=".pdf,.doc,.docx,.ppt,.pptx">
+                    </div>
+
+                    <div class="flex-between mt-3">
+                        <button class="btn btn-outline" onclick="goToWizardStep(3)">← Previous</button>
+                        <button class="btn btn-primary" onclick="nextWizardStep(4)">Review Dossier →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 5: REVIEW & SUBMIT -->
+                <div class="wizard-panel" id="wiz-panel-5">
+                    <h3 style="font-size:1.05rem; color:var(--navy);" class="mb-2">Review Dossier Details</h3>
+                    <div class="kv-row"><span>Full Name</span><strong id="sum-name">-</strong></div>
+                    <div class="kv-row"><span>Contact</span><strong id="sum-contact">-</strong></div>
+                    <div class="kv-row"><span>Academic Background</span><strong id="sum-edu">-</strong></div>
+                    <div class="kv-row"><span>1st Option (Primary Program)</span><strong id="sum-first-option">-</strong></div>
+                    <div class="kv-row"><span>2nd Option (Secondary Program)</span><strong id="sum-second-option">-</strong></div>
+                    <div class="kv-row"><span>Uploaded Documentation</span><strong id="sum-docs">-</strong></div>
+                    <div class="flex-between mt-3">
+                        <button class="btn btn-outline" onclick="goToWizardStep(4)">← Edit Information</button>
+                        <button class="btn btn-accent" onclick="completeWizardSubmission()">Submit Application & View Status</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         4. APPLICATION STATUS TRACKER PAGE
+         ========================================================= -->
+    <section id="page-status" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Application Status Tracker</h2>
+                    <p>Personal application portal displaying your submitted applications, current review stage, and status notifications.</p>
+                </div>
+                <button class="btn btn-accent btn-sm" onclick="navigateTo('apply')">+ New Application</button>
+            </div>
+
+            <div class="narrow-box" style="max-width:860px;">
+                <div id="applications-status-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         5. STUDENT ACADEMIC RECORD PAGE
+         ========================================================= -->
+    <section id="page-dashboard" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Student Academic Record</h2>
+                    <p>Course enrollments, grade breakdowns across assignments, exams, and projects, and module completion progress.</p>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <button class="bell-btn" onclick="toggleBellNotification()" title="Grade Notifications">
+                        <span>Notifications</span>
+                        <span class="bell-badge" id="grade-bell-badge">NEW</span>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="refreshStudentGrades()">Refresh Grades</button>
+                    <button class="btn btn-danger-outline btn-sm" onclick="logoutStudent()">Sign Out</button>
+                </div>
+            </div>
+
+            <div class="bell-dropdown" id="grade-bell-banner">
+                <span id="grade-bell-text">New grades have been published to your academic record.</span>
+                <button class="btn btn-ghost btn-sm" onclick="dismissBellNotification()">Dismiss</button>
+            </div>
+
+            <div class="kv-row mb-3">
+                <div>
+                    <strong id="dash-student-header" style="color:var(--navy);">Student: Alexandru-Sebastian Moisei • Year II, Semester 1</strong>
+                    <div class="text-xs text-muted" id="sync-timestamp">Academic Registry Sync: Active</div>
+                </div>
+                <span class="tag tag-success">Enrolled • IF (Cu frecvență)</span>
+            </div>
+
+            <div class="kpi-strip-3">
+                <div class="kpi-box">
+                    <span>Weighted GPA</span>
+                    <strong id="dash-gpa">9.48 / 10</strong>
+                </div>
+                <div class="kpi-box">
+                    <span>Credits Accumulated</span>
+                    <strong>90 / 120 ECTS</strong>
+                </div>
+                <div class="kpi-box">
+                    <span>Active Courses</span>
+                    <strong>4 Disciplines</strong>
+                </div>
+            </div>
+
+            <h3 class="record-section-title">My Grades & Course Enrollments</h3>
+            <div class="grid-2" id="student-courses-grid"></div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         6. INSTRUCTORS & FACULTY PROFILES
+         ========================================================= -->
+    <section id="page-faculty" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Instructors & Faculty Profiles</h2>
+                    <p>Academic faculty and certified practitioners leading the Master in Project Management program, including qualifications, expertise, and research publications.</p>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="navigateTo('curriculum')">View Course Curriculum →</button>
+            </div>
+
+            <div class="toolbar">
+                <div class="filter-controls">
+                    <select class="filter-select" id="faculty-expertise-filter" onchange="renderFaculty()">
+                        <option value="all">All Areas of Expertise</option>
+                        <option value="PMBOK & Agile">PMBOK & Agile Methodologies</option>
+                        <option value="Risk & Audit">Risk Management & Audit</option>
+                        <option value="EU Funding">European Funding & Grants</option>
+                        <option value="Governance & Leadership">Governance & Team Leadership</option>
+                    </select>
+                </div>
+                <input type="text" class="search-box" id="faculty-search" placeholder="Search by instructor, qualification, or topic..." oninput="renderFaculty()">
+            </div>
+
+            <div class="grid-2" id="faculty-grid"></div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         7. INTERNSHIP OPPORTUNITIES
+         ========================================================= -->
+    <section id="page-internships" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Internship & Practice Opportunities</h2>
+                    <p>Browse open internships accredited toward the Year II Specialized Practice module (8 ECTS). Filter by compensation, field of interest, or schedule.</p>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div class="filter-controls">
+                    <select class="filter-select" id="int-comp-filter" onchange="renderInternships()">
+                        <option value="all">Compensation: All</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Unpaid">Unpaid / Academic Credit</option>
+                    </select>
+                    <select class="filter-select" id="int-field-filter" onchange="renderInternships()">
+                        <option value="all">Field: All Sectors</option>
+                        <option value="IT & Agile">IT & Agile Delivery</option>
+                        <option value="EU Grants">European Funds & Public Policy</option>
+                        <option value="PMO & Consulting">PMO & Business Consulting</option>
+                    </select>
+                    <select class="filter-select" id="int-type-filter" onchange="renderInternships()">
+                        <option value="all">Schedule: All</option>
+                        <option value="Part-Time">Part-Time (20h/week)</option>
+                        <option value="Full-Time">Full-Time (40h/week)</option>
+                    </select>
+                </div>
+                <input type="text" class="search-box" id="int-search" placeholder="Search role, company, or location..." oninput="renderInternships()">
+            </div>
+
+            <div class="grid-2" id="internships-grid"></div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         8. ALUMNI VOICES
+         ========================================================= -->
+    <section id="page-alumni" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Alumni Voices</h2>
+                    <p>Career trajectories and reflections from graduates of the Master in Project Management program at SNSPA.</p>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div class="filter-controls">
+                    <select class="filter-select" id="alumni-industry-filter" onchange="renderAlumni()">
+                        <option value="all">Industry: All Sectors</option>
+                        <option value="Management Consulting">Management Consulting</option>
+                        <option value="IT & Product Design">IT & Product Design</option>
+                        <option value="Finance & Advisory">Finance & Advisory</option>
+                        <option value="EU Funds & Public Sector">EU Funds & Public Sector</option>
+                    </select>
+                    <select class="filter-select" id="alumni-year-filter" onchange="renderAlumni()">
+                        <option value="all">Graduation Year: All</option>
+                        <option value="2012">Class of 2012</option>
+                        <option value="2011">Class of 2011</option>
+                        <option value="2010">Class of 2010</option>
+                        <option value="2007">Class of 2007</option>
+                    </select>
+                    <select class="filter-select" id="alumni-role-filter" onchange="renderAlumni()">
+                        <option value="all">Role Type: All</option>
+                        <option value="Consultant">Consultant / Advisor</option>
+                        <option value="Project / Product Lead">Project / Product Lead</option>
+                        <option value="Specialist / Designer">Specialist / Designer</option>
+                    </select>
+                </div>
+                <input type="text" class="search-box" id="alumni-search" placeholder="Search alumnus, role, or keyword..." oninput="renderAlumni()">
+            </div>
+
+            <div class="grid-2" id="alumni-grid"></div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         9. CONTACT PAGE
+         ========================================================= -->
+    <section id="page-contact" class="page-view">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2>Program Coordination & Secretariat</h2>
+                    <p>Faculty of Communication and Public Relations - SNSPA Bucharest.</p>
+                </div>
+            </div>
+            <div class="narrow-box">
+               <div class="kv-row"><span>Program Coordinator</span><strong>Assoc. Prof. Dr. Loredana Vladu</strong></div>
+<div class="kv-row"><span>Coordinator Email</span><a class="contact-link" href="mailto:loredana.vladu@comunicare.ro">loredana.vladu@comunicare.ro</a></div>
+<div class="kv-row">
+    <span>Admissions & Secretariat Office</span>
+    <div>
+        <a class="contact-link" href="mailto:andreea.anghelescu@comunicare.ro">andreea.anghelescu@comunicare.ro</a><br>
+        <a class="contact-link" href="mailto:ioana.oprea@comunicare.ro">ioana.oprea@comunicare.ro</a>
+    </div>
+</div>
+<div class="kv-row"><span>Secretariat Office Hours</span><strong>Monday - Friday, 10:00 - 14:00</strong></div>
+                <div class="kv-row"><span>Campus Address</span><strong>Bulevardul Expoziției 30A, Sector 1, București</strong></div>
+                <div class="kv-row" style="margin-bottom:0;"><span>Faculty Website</span><a class="contact-link" href="https://comunicare.ro" target="_blank" rel="noopener">www.comunicare.ro</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         MODALS (LOGIN, SYLLABUS, INTERNSHIP, INQUIRY)
+         ========================================================= -->
+
+    <!-- STUDENT LOGIN MODAL -->
+    <div class="modal-backdrop" id="login-modal" onclick="handleOverlayClick(event, 'login-modal')">
+        <div class="modal-dialog">
+            <span class="eyebrow" style="margin-bottom:4px;">SNSPA Institutional Access</span>
+            <h3 style="font-size:1.25rem; color:var(--navy);" class="mb-1">Student Portal Sign In</h3>
+            <p class="text-sm text-sec mb-2">Sign in with your university email to view grades and ECTS standing.</p>
+            <div class="alert-box alert-danger" id="login-alert"></div>
+            <div class="form-field">
+                <label for="login-email">University Email *</label>
+                <input type="email" id="login-email" value="sebastian.moisei@student.snspa.ro">
+            </div>
+            <div class="form-field">
+                <label for="login-password">Password *</label>
+                <input type="password" id="login-password" value="MasterPM2026">
+                <span class="text-xs text-muted">Demo credentials pre-filled for preview.</span>
+            </div>
+            <div class="flex-between mt-3">
+                <button class="btn btn-outline" onclick="closeModal('login-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitStudentLogin()">Sign In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SYLLABUS MODAL -->
+    <div class="modal-backdrop" id="syllabus-modal" onclick="handleOverlayClick(event, 'syllabus-modal')">
+        <div class="modal-dialog">
+            <span class="eyebrow" style="margin-bottom:4px;">Course Syllabus (Fișa Disciplinei)</span>
+            <h3 id="mod-title" style="font-size:1.25rem; color:var(--navy);" class="mb-2">Course Title</h3>
+            <div class="kv-row"><span>Coordinator</span><strong id="mod-instructor"></strong></div>
+            <div class="kv-row"><span>Workload & Credits</span><strong id="mod-credits"></strong></div>
+            <div class="kv-row"><span>Prerequisites</span><strong id="mod-prereq"></strong></div>
+            <div style="background:var(--bg-page); border:1px solid var(--border); padding:14px; border-radius:var(--radius); font-size:0.85rem; margin-top:12px;">
+                <strong style="color:var(--navy); display:block; margin-bottom:4px;">Objectives & Learning Outcomes</strong>
+                <p id="mod-desc" class="text-sec"></p>
+            </div>
+            <div class="flex-between mt-3" style="justify-content:flex-end; gap:10px;">
+                <button class="btn btn-outline" onclick="closeModal('syllabus-modal')">Close</button>
+                <button class="btn btn-primary" onclick="downloadSyllabusFile()">Download Syllabus (.txt)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERNSHIP LEARN MORE / APPLY MODAL -->
+    <div class="modal-backdrop" id="internship-modal" onclick="handleOverlayClick(event, 'internship-modal')">
+        <div class="modal-dialog">
+            <span class="eyebrow" style="margin-bottom:4px;" id="int-modal-eyebrow">Practice Placement</span>
+            <h3 id="int-modal-title" style="font-size:1.2rem; color:var(--navy);" class="mb-1">Role</h3>
+            <p class="text-sm text-sec mb-2" id="int-modal-company">Company</p>
+
+            <div id="int-details-block" style="background:var(--bg-page); border:1px solid var(--border); border-radius:var(--radius); padding:14px; margin-bottom:16px; font-size:0.84rem;">
+                <p class="text-sec mb-2" id="int-modal-full-desc"></p>
+                <strong style="color:var(--navy); display:block; margin-bottom:4px;">Eligibility & Requirements:</strong>
+                <ul class="req-list" id="int-modal-reqs" style="margin-bottom:0;"></ul>
+            </div>
+
+            <div class="alert-box alert-danger" id="int-alert"></div>
+            <div id="int-apply-form-section">
+                <div class="form-field">
+                    <label for="int-applicant-name">Full Name *</label>
+                    <input type="text" id="int-applicant-name" placeholder="Your full name">
+                </div>
+                <div class="form-field">
+                    <label for="int-applicant-email">Email Address *</label>
+                    <input type="email" id="int-applicant-email" placeholder="name@example.com">
+                </div>
+                <div class="form-field">
+                    <label for="int-applicant-note">Availability & Relevant Tools *</label>
+                    <textarea rows="2" id="int-applicant-note" placeholder="e.g., Available 20h/week, experienced with Scrum, Jira, and Excel..."></textarea>
+                </div>
+                <div class="flex-between mt-3">
+                    <button class="btn btn-outline" onclick="closeModal('internship-modal')">Close</button>
+                    <button class="btn btn-primary" onclick="submitInternshipApplication()">Submit Placement Application</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSTRUCTOR INQUIRY MODAL -->
+    <div class="modal-backdrop" id="inquiry-modal" onclick="handleOverlayClick(event, 'inquiry-modal')">
+        <div class="modal-dialog">
+            <span class="eyebrow" style="margin-bottom:4px;">Academic Inquiry</span>
+            <h3 id="inq-prof-name" style="font-size:1.2rem; color:var(--navy);" class="mb-1">Professor Name</h3>
+            <p class="text-xs text-muted mb-2" id="inq-prof-email">email@comunicare.ro</p>
+            <div class="alert-box alert-danger" id="inq-alert"></div>
+            <div class="form-field">
+                <label for="inq-sender-name">Your Name *</label>
+                <input type="text" id="inq-sender-name" placeholder="Enter your full name">
+            </div>
+            <div class="form-field">
+                <label for="inq-sender-email">Your Email *</label>
+                <input type="email" id="inq-sender-email" placeholder="name@example.com">
+            </div>
+            <div class="form-field">
+                <label for="inq-message">Question Regarding Coursework or Research *</label>
+                <textarea rows="3" id="inq-message" placeholder="Write your academic question..."></textarea>
+            </div>
+            <div class="flex-between mt-3">
+                <button class="btn btn-outline" onclick="closeModal('inquiry-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitInstructorInquiry()">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast-notification"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-cols">
+                <div>
+                    <h4>Master in Project Management</h4>
+                    <p>Faculty of Communication and Public Relations, National University of Political Studies and Public Administration (SNSPA), Bucharest.</p>
+                </div>
+                <div>
+                    <h4>Academic</h4>
+                    <a onclick="navigateTo('home')">Program Overview</a>
+                    <a onclick="navigateTo('curriculum')">Curriculum (120 ECTS)</a>
+                    <a onclick="navigateTo('faculty')">Instructors & Faculty</a>
+                    <a onclick="navigateTo('internships')">Internships</a>
+                    <a onclick="navigateTo('alumni')">Alumni Voices</a>
+                </div>
+                <div>
+                    <h4>Admissions & Portal</h4>
+                    <a onclick="navigateTo('apply')">Online Application</a>
+                    <a onclick="navigateTo('status')">Application Status</a>
+                    <a onclick="openStudentPortal()">Login to Student Portal</a>
+                    <a onclick="navigateTo('contact')">Secretariat Contact</a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <span>© 2026 SNSPA - FACULTY OF COMMUNICATION AND PUBLIC RELATIONS</span>
+                <span>PMI Global Accreditation Center (GAC) Accredited</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const COURSES = [
+            // Anul I
+            {
+                year: 'year1',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Entrepreneurship and Innovation',
+                summary: 'Cultivating entrepreneurial thinking and designing innovative products and services through project-based initiatives.',
+                instructor: 'C.d.a. dr. Lavinia Iancu',
+                prerequisites: 'None',
+                outcomes: 'Formulate business models, evaluate market feasibility, and pitch innovative project ventures.'
+            },
+            {
+                year: 'year1',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Project Management 1',
+                summary: 'Foundational predictive project management processes: initiating, scope definition, WBS, scheduling, and budgeting.',
+                instructor: 'Conf. univ. dr. Loredana Vladu, c.d.a. dr. Marina Enache',
+                prerequisites: 'None',
+                outcomes: 'Develop a complete project management plan and Work Breakdown Structure aligned with PMBOK standards.'
+            },
+            {
+                year: 'year1',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Leadership & Project Team Management',
+                summary: 'Managing group dynamics, team motivation, conflict resolution, and leadership styles across project life cycles.',
+                instructor: 'Conf. univ. dr. Loredana Vladu',
+                prerequisites: 'None',
+                outcomes: 'Guide teams through Forming, Storming, Norming, and Performing stages with structured leadership.'
+            },
+            {
+                year: 'year1',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'EU-Funded Projects and Programs',
+                summary: 'Attracting, writing, and implementing grant-funded projects financed through European Union programs.',
+                instructor: 'C.d.a. dr. Irina Lonean',
+                prerequisites: 'None',
+                outcomes: 'Draft compliant EU funding proposals, logical matrices, and public grant budgets.'
+            },
+            {
+                year: 'year1',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Project Management 2',
+                summary: 'Advanced execution, Earned Value Management (EVM), quality control, procurement, and project closure.',
+                instructor: 'Conf. univ. dr. Loredana Vladu, c.d.a. dr. Marina Enache',
+                prerequisites: 'Project Management I',
+                outcomes: 'Monitor project baselines using Earned Value metrics and execute formal contract closures.'
+            },
+            {
+                year: 'year1',
+                credits: '7 ECTS',
+                duration: '14 Weeks',
+                title: 'Presentation Skills for Project Managers',
+                summary: 'Executive communication, stakeholder pitching, negotiation, and persuasive reporting for project leaders.',
+                instructor: 'Conf. univ. dr. Loredana Vladu, c.d.a. Adina Grigoroiu',
+                prerequisites: 'None',
+                outcomes: 'Deliver clear stakeholder demos, status briefings, and executive steering presentations.'
+            },
+            {
+                year: 'year1',
+                credits: '7 ECTS',
+                duration: '14 Weeks',
+                title: 'Strategic Management',
+                summary: 'Aligning project portfolios with organizational strategy, competitive advantage, and long-term governance.',
+                instructor: 'C.d.a. dr. Cristina Racoceanu',
+                prerequisites: 'None',
+                outcomes: 'Evaluate strategic alignment of project portfolios and organizational value delivery.'
+            },
+            {
+                year: 'year1',
+                credits: '7 ECTS',
+                duration: '14 Weeks',
+                title: 'Project Management Applications',
+                summary: 'Digital software tools for project scheduling, resource allocation, tracking, and collaborative workflows.',
+                instructor: 'Lector. univ. dr. Mirela Pîrvan',
+                prerequisites: 'Project Management I',
+                outcomes: 'Configure project schedules, resource calendars, and digital tracking boards.'
+            },
+            // Anul II
+            {
+                year: 'year2',
+                credits: '7 ECTS',
+                duration: '14 Weeks',
+                title: 'Research Methods and Techniques',
+                summary: 'Quantitative and qualitative research methodologies for organizational analysis and applied project studies.',
+                instructor: 'Prof. univ. dr. Nicoleta Corbu, Prof. univ. dr. Loredana Ivan',
+                prerequisites: 'None',
+                outcomes: 'Design surveys, interview guides, and empirical data analyses for project research.'
+            },
+            {
+                year: 'year2',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Agile Project Management',
+                summary: 'Principles and practices of Agile, Scrum, Kanban, and Extreme Programming (XP) for dynamic environments.',
+                instructor: 'C.d.a. Adina Grigoroiu',
+                prerequisites: 'Project Management I & II',
+                outcomes: 'Compare predictive and adaptive lifecycles and deliver a product prototype using Scrum and Kanban.'
+            },
+            {
+                year: 'year2',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Risk Management',
+                summary: 'Qualitative and quantitative risk analysis, mitigation strategies, and managing project uncertainty.',
+                instructor: 'C.d.a. Conf. univ. dr. Sergiu Stan',
+                prerequisites: 'Project Management I',
+                outcomes: 'Build comprehensive risk registers, probability-impact matrices, and contingency response plans.'
+            },
+            {
+                year: 'year2',
+                credits: '7 ECTS',
+                duration: '14 Weeks',
+                title: 'Design and Implementation of Research Projects',
+                summary: 'Designing, funding, and coordinating national and international R&D and academic research projects.',
+                instructor: 'C.d.a. Prof. univ. dr. Adrian Curaj',
+                prerequisites: 'Research Methods',
+                outcomes: 'Structure multi-partner research consortia, work packages, and deliverable milestones.'
+            },
+            {
+                year: 'year2',
+                credits: '7 ECTS',
+                duration: '14 Weeks',
+                title: 'Projects Evaluation and Audit',
+                summary: 'Compliance verification, quality auditing, benefit realization, and post-implementation project evaluation.',
+                instructor: 'C.d.a. Conf. univ. dr. Sergiu Stan',
+                prerequisites: 'Project Management II',
+                outcomes: 'Conduct formal project audits and evaluate compliance against contractual objectives.'
+            },
+            {
+                year: 'year2',
+                credits: '7 ECTS',
+                duration: '14 Weeks',
+                title: 'Monitoring and Performance Indicators',
+                summary: 'Designing KPIs, control charts, dashboards, and performance reporting systems for projects.',
+                instructor: 'C.d.a. dr. Irina Lonean',
+                prerequisites: 'Project Management I',
+                outcomes: 'Design performance indicator frameworks to track outputs, outcomes, and project efficiency.'
+            },
+            {
+                year: 'year2',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Field Assignment',
+                summary: 'Supervised practical placement in partner companies, public institutions, or project management offices.',
+                instructor: 'C.d.a. dr. Marina Enache',
+                prerequisites: 'Year I Completed',
+                outcomes: 'Apply project management tools in a real organizational environment and compile a practice portfolio.'
+            },
+            {
+                year: 'year2',
+                credits: '8 ECTS',
+                duration: '14 Weeks',
+                title: 'Methods and techniques for preparing the final paper',
+                summary: 'Structured academic guidance for researching, writing, and defending the Master’s dissertation.',
+                instructor: 'C.d.a. dr. Iulia Călin',
+                prerequisites: 'Research Methods',
+                outcomes: 'Complete a rigorous, original Master’s dissertation addressing an applied PM topic.'
+            }
+        ];
+
+        const FACULTY = [
+            {
+                initials: 'LV',
+                role: 'Program Coordinator',
+                expertiseCategory: 'Governance & Leadership',
+                name: 'Conf. univ. dr. Loredana Vladu',
+                qualifications: 'PhD • Conf. univ. dr., FCRP SNSPA',
+                expertise: 'Organizational Governance, Project Communication, Leadership',
+                achievements: 'Coordinates the PMI GAC accredited Master in Project Management program; author of peer-reviewed studies on organizational communication.',
+                bio: 'Leads academic coordination and curriculum alignment with international PMI Global Accreditation Center standards at SNSPA.',
+                email: 'loredana.vladu@comunicare.ro'
+            },
+            {
+                initials: 'SB',
+                role: 'Senior Lecturer & Practitioner',
+                expertiseCategory: 'PMBOK & Agile',
+                name: 'Prof. Dr. Simona Bonghez, PMP',
+                qualifications: 'PhD in Management • Project Management Professional (PMP®)',
+                expertise: 'PMBOK Predictive Frameworks, Agile & Scrum Delivery, Earned Value Management',
+                achievements: 'Over 20 years of enterprise consulting and PM training; published author and speaker at PMI Global Congresses.',
+                bio: 'Teaches Project Management I, Project Management II, and Agile methodologies, bridging international standards with applied simulations.',
+                email: 'simona.bonghez@comunicare.ro'
+            },
+            {
+                initials: 'SS',
+                role: 'Associate Professor',
+                expertiseCategory: 'Risk & Audit',
+                name: 'Conf. univ. dr. Sergiu Stan',
+                qualifications: 'PhD in Management • Certified Project Auditor & Risk Consultant',
+                expertise: 'Quantitative & Qualitative Risk Analysis, Project Evaluation, Quality Auditing',
+                achievements: 'Lead evaluator for national and European institutional development programs; published extensively on risk mitigation.',
+                bio: 'Guides second-year graduate students through Risk Management and Project Evaluation & Audit using real compliance case studies.',
+                email: 'sergiu.stan@comunicare.ro'
+            },
+            {
+                initials: 'AC',
+                role: 'Professor',
+                expertiseCategory: 'EU Funding',
+                name: 'Prof. univ. dr. Adrian Curaj',
+                qualifications: 'PhD • Professor and R&D Policy Expert',
+                expertise: 'Research Policy, Innovation Grants, Horizon Europe Consortia',
+                achievements: 'Former Minister of Education and high-level EU research policy advisor.',
+                bio: 'Coordinates the design and implementation of research and innovation projects.',
+                email: 'adrian.curaj@comunicare.ro'
+            },
+            {
+                initials: 'AG',
+                role: 'Associate Lecturer & Agile Coach',
+                expertiseCategory: 'PMBOK & Agile',
+                name: 'C.d.a. Adina Grigoroiu',
+                qualifications: 'PhD • Certified Scrum Master (CSM) & Agile Delivery Lead',
+                expertise: 'Scrum, Kanban, User Story Mapping, Sprint Velocity & Product Prototyping',
+                achievements: 'Led digital transformation and agile adoption across multi-disciplinary software and operations teams.',
+                bio: 'Co-coordinates Agile Project Management Methodologies, mentoring student teams through iterative sprint ceremonies.',
+                email: 'adina.grigoroiu@comunicare.ro'
+            },
+            {
+                initials: 'IL',
+                role: 'Lecturer',
+                expertiseCategory: 'EU Funding',
+                name: 'C.d.a. dr. Irina Lonean',
+                qualifications: 'PhD • Grant Implementation & KPI Specialist',
+                expertise: 'European Funding, Performance Indicators, Milestone Tracking',
+                achievements: 'Extensive background in writing and auditing non-reimbursable EU funds.',
+                bio: 'Teaches European Funding and Monitoring and Performance Indicators.',
+                email: 'irina.lonean@comunicare.ro'
+            }
+        ];
+
+        const INTERNSHIPS = [
+            {
+                id: 'int-1',
+                compensation: 'Paid',
+                field: 'IT & Agile',
+                schedule: 'Part-Time',
+                title: 'Junior Agile Project Manager Intern',
+                company: 'TechFlow Solutions',
+                location: 'Bucharest (Hybrid - 2 days/week on-site)',
+                duration: '3 Months (20h/week)',
+                summary: 'Support Scrum Masters and Product Owners with sprint planning, backlog refinement, and Jira velocity reporting for enterprise software teams.',
+                requirements: [
+                    'Enrolled in Year I or Year II of the Master in Project Management program',
+                    'Working knowledge of Scrum ceremonies, user stories, and Kanban boards',
+                    'Strong command of English (B2/C1) and analytical reporting in Excel/Jira'
+                ]
+            },
+            {
+                id: 'int-2',
+                compensation: 'Paid',
+                field: 'EU Grants',
+                schedule: 'Full-Time',
+                title: 'European Funds Implementation Assistant',
+                company: 'EuroGrant Consulting Romania',
+                location: 'Bucharest, Sector 1',
+                duration: '6 Months (40h/week)',
+                summary: 'Assist senior project consultants with PNRR and structural fund grant reporting, public procurement files, and milestone verification.',
+                requirements: [
+                    'Completion of the European Funding and Project Management I modules',
+                    'Attention to detail in budgeting, logical matrices, and compliance documentation',
+                    'Proficiency in Microsoft Excel and formal Romanian/English drafting'
+                ]
+            },
+            {
+                id: 'int-3',
+                compensation: 'Paid',
+                field: 'PMO & Consulting',
+                schedule: 'Part-Time',
+                title: 'PMO & Operations Analyst Intern',
+                company: 'Balkan Advisory Group',
+                location: 'Bucharest (Hybrid)',
+                duration: '4 Months (20h/week)',
+                summary: 'Maintain portfolio KPI dashboards, track project risk registers, and prepare executive steering committee decks across client engagements.',
+                requirements: [
+                    'Strong foundation in WBS, Earned Value metrics, and risk register structuring',
+                    'Experience with PowerPoint executive storytelling and data visualization',
+                    'Availability for at least 20 hours per week during the academic semester'
+                ]
+            },
+            {
+                id: 'int-4',
+                compensation: 'Unpaid',
+                field: 'EU Grants',
+                schedule: 'Part-Time',
+                title: 'Research & Innovation Project Coordinator Trainee',
+                company: 'SNSPA Center for European Studies',
+                location: 'Bucharest (Bd. Expoziției 30A)',
+                duration: '3 Months (15h/week • 8 ECTS Accredited)',
+                summary: 'Collaborate with faculty principal investigators on Horizon Europe consortium deliverables, partner communication, and dissemination events.',
+                requirements: [
+                    'Interest in academic research management and international institutional partnerships',
+                    'Strong organizational and written communication skills in English',
+                    'Accredited directly toward the Year II Specialized Practice requirement'
+                ]
+            }
+        ];
+
+        const ALUMNI = [
+            {
+                name: 'Raluca Mihălăchioiu',
+                graduationYear: '2007',
+                role: 'Senior PR Consultant & Agency Founder',
+                roleType: 'Consultant',
+                industry: 'Management Consulting',
+                quote: 'With over 10 years of experience in public relations, my foundation at FCRP and SNSPA opened doors to high-level leadership and creative industry education.',
+                impact: 'Award-winning PR consultant (Best Newcomer PR Agency, multiple Gold and Silver Awards at the Romanian PR Award) who successfully runs independent communication initiatives.'
+            },
+            {
+                name: 'Sabina Anehei',
+                graduationYear: '2012',
+                role: 'Marketing & Communication Coordinator',
+                roleType: 'Project / Product Lead',
+                industry: 'Management Consulting',
+                quote: 'FCRP provided the professional conduct and practical confidence needed to handle high-profile brands and complex non-conventional situations.',
+                impact: 'Began with internships during Faculty and currently coordinates marketing and communication for the passenger car division of Mercedes-Benz Romania.'
+            },
+            {
+                name: 'Ioana Alistar',
+                graduationYear: '2011',
+                role: 'Entrepreneur & Brand Manager',
+                roleType: 'Project / Product Lead',
+                industry: 'Finance & Advisory',
+                quote: 'Graduating from FCRP and its Brand Management Master’s program helped me build a rigorous academic profile, enhanced by an Erasmus scholarship in Germany.',
+                impact: 'The entrepreneurial mindset encouraged by professors during her studies empowered her to launch an online business applying branding, PR, and marketing strategies.'
+            },
+            {
+                name: 'Eugen Octav Popa',
+                graduationYear: '2010',
+                role: 'Researcher in Argumentation Theory',
+                roleType: 'Consultant',
+                industry: 'EU Funds & Public Sector',
+                quote: 'Argumentation theory grabs you without you realizing it and never lets go. FCRP forces you to question what the world around you takes for granted.',
+                impact: 'Led by curiosity sparked during faculty, he pursued academic research internationally, earning his PhD from the Department of Argumentation Theory at the University of Amsterdam.'
+            }
+        ];
+
+        // ONLY 3 REAL PROGRAMS (IF RO, IFR RO, IF ENG)
+        const PROGRAM_OPTIONS = [
+            { id: 'PM Romanian IF', title: 'PM Romanian IF', subtitle: 'Cu frecvență • Taught in Romanian' },
+            { id: 'PM Romanian IFR', title: 'PM Romanian IFR', subtitle: 'Frecvență redusă • Taught in Romanian' },
+            { id: 'PM English IF', title: 'PM English IF', subtitle: 'Cu frecvență • Taught in English' }
+        ];
+
+        const PROGRAM_DOC_RULES = {
+            'PM English IF': {
+                secondDocLabel: '6. PowerPoint Presentation *',
+                secondAccept: '.ppt,.pptx,.pdf',
+                noticeTitle: 'Documente necesare pentru înscrierea la masterat — 1st Option (PM English IF):',
+                noticeDesc: 'Upload the mandatory Master’s admission documents (scanned copy or photo) along with your PowerPoint Presentation.'
+            },
+            'PM Romanian IF': {
+                secondDocLabel: '6. Admission Essay *',
+                secondAccept: '.pdf,.doc,.docx',
+                noticeTitle: 'Documente necesare pentru înscrierea la masterat — 1st Option (PM Romanian IF):',
+                noticeDesc: 'Upload the mandatory Master’s admission documents (scanned copy or photo) along with your Admission Essay.'
+            },
+            'PM Romanian IFR': {
+                secondDocLabel: '6. Letter of Intention *',
+                secondAccept: '.pdf,.doc,.docx',
+                noticeTitle: 'Documente necesare pentru înscrierea la masterat — 1st Option (PM Romanian IFR):',
+                noticeDesc: 'Upload the mandatory Master’s admission documents (scanned copy or photo) along with your Letter of Intention.'
+            }
+        };
+
+        const STUDENT_ENROLLMENTS = [
+            {
+                title: 'Agile Project Management Methodologies',
+                status: 'In Progress',
+                average: 9.65,
+                completion: 88,
+                breakdown: [
+                    { label: 'Assignments (Seminar Labs & Quizzes - 40%)', score: '9.50 / 10' },
+                    { label: 'Project (Scrum Team Prototype - 40%)', score: '9.80 / 10' },
+                    { label: 'Exam (Final Sprint Retrospective - 20%)', score: 'Pending' }
+                ]
+            },
+            {
+                title: 'Risk Management',
+                status: 'In Progress',
+                average: 9.50,
+                completion: 92,
+                breakdown: [
+                    { label: 'Assignments (Risk Identification Case - 30%)', score: '9.40 / 10' },
+                    { label: 'Project (Mitigation Register - 40%)', score: '9.60 / 10' },
+                    { label: 'Exam (Midterm Assessment - 30%)', score: '9.50 / 10' }
+                ]
+            },
+            {
+                title: 'Applications for Project Management',
+                status: 'In Progress',
+                average: 9.25,
+                completion: 64,
+                breakdown: [
+                    { label: 'Assignments (MS Project / Jira Labs - 40%)', score: '9.30 / 10' },
+                    { label: 'Project (Resource Scheduling Portfolio - 30%)', score: '9.20 / 10' },
+                    { label: 'Exam (Practical Software Test - 30%)', score: 'Pending' }
+                ]
+            },
+            {
+                title: 'Monitoring and Performance Indicators',
+                status: 'In Progress',
+                average: 9.55,
+                completion: 78,
+                breakdown: [
+                    { label: 'Assignments (KPI Definition Exercises - 30%)', score: '9.50 / 10' },
+                    { label: 'Project (Performance Dashboard Design - 40%)', score: '9.60 / 10' },
+                    { label: 'Exam (Case Study Evaluation - 30%)', score: 'Pending' }
+                ]
+            }
+        ];
+
+        const appState = {
+            currentUser: null,
+            curriculumFilter: 'all',
+            selectedSyllabus: null,
+            selectedInternshipId: null,
+            appliedInternships: new Set(),
+            selectedPrograms: [],
+            gradeRefreshCount: 0,
+            hasUnreadGradeNotice: false,
+            latestGradeMessage: '',
+            applications: [
+                {
+                    refId: '#SNSPA-PM-2026-412',
+                    firstOption: 'PM English IF',
+                    secondOption: 'PM Romanian IF',
+                    applicantName: 'Alexandru-Sebastian Moisei',
+                    submittedDate: 'November 10, 2026',
+                    status: 'Under Review',
+                    documents: 'Certificat_nastere.pdf, CI.jpg, Diploma_licenta.pdf, Adeverinta_medicala.pdf, Project_Pitch.pptx'
+                },
+                {
+                    refId: '#SNSPA-PM-2026-389',
+                    firstOption: 'PM Romanian IFR',
+                    secondOption: 'None',
+                    applicantName: 'Alexandru-Sebastian Moisei',
+                    submittedDate: 'November 04, 2026',
+                    status: 'Documents Missing',
+                    documents: 'Certificat_nastere.pdf, CI.pdf, Diploma_licenta.pdf (Adeverință medicală & Letter of Intention pending verification)'
+                }
+            ]
+        };
+
+        // NAVIGATION & AUTH
+        function navigateTo(pageId) {
+            if (pageId === 'dashboard' && !appState.currentUser) {
+                openModal('login-modal');
+                return;
+            }
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + pageId);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.page === pageId);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openStudentPortal() {
+            if (appState.currentUser) {
+                navigateTo('dashboard');
+            } else {
+                openModal('login-modal');
+            }
+        }
+
+        function handleAuthButtonClick() {
+            if (appState.currentUser) {
+                navigateTo('dashboard');
+            } else {
+                openModal('login-modal');
+            }
+        }
+
+        function submitStudentLogin() {
+            const email = document.getElementById('login-email').value.trim();
+            const pass = document.getElementById('login-password').value.trim();
+            const alertBox = document.getElementById('login-alert');
+
+            if (!isValidEmail(email) || pass.length < 4) {
+                alertBox.innerText = 'Please enter a valid institutional email address and password.';
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            alertBox.style.display = 'none';
+            const formattedName = formatNameFromEmail(email);
+            appState.currentUser = { name: formattedName, email };
+
+            updateAuthUI();
+            closeModal('login-modal');
+            showToast(`Signed in as ${formattedName}`);
+            navigateTo('dashboard');
+        }
+
+        function logoutStudent() {
+            appState.currentUser = null;
+            updateAuthUI();
+            showToast('Signed out of Student Portal.');
+            navigateTo('home');
+        }
+
+        function updateAuthUI() {
+            const chip = document.getElementById('nav-user-chip');
+            const chipName = document.getElementById('nav-user-name');
+            const authBtn = document.getElementById('nav-auth-btn');
+            const dashHeader = document.getElementById('dash-student-header');
+
+            if (appState.currentUser) {
+                chip.classList.add('visible');
+                chipName.innerText = appState.currentUser.name;
+                authBtn.style.display = 'none';
+                dashHeader.innerText = `Student: ${appState.currentUser.name} • Year II, Semester 1`;
+            } else {
+                chip.classList.remove('visible');
+                authBtn.style.display = 'inline-flex';
+            }
+        }
+
+        function formatNameFromEmail(email) {
+            return email.split('@')[0]
+                .split(/[._-]/)
+                .filter(Boolean)
+                .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+                .join(' ');
+        }
+
+        // 1. CURRICULUM RENDERING
+        function setCurriculumFilter(filter, btnEl) {
+            appState.curriculumFilter = filter;
+            document.querySelectorAll('#page-curriculum .tab-btn').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+            renderCurriculum();
+        }
+
+        function renderCurriculum() {
+            const tbody = document.getElementById('curriculum-tbody');
+            const query = (document.getElementById('course-search')?.value || '').trim().toLowerCase();
+
+            const filtered = COURSES.filter(c => {
+                const matchesYear = appState.curriculumFilter === 'all' || c.year === appState.curriculumFilter;
+                const matchesQuery = !query ||
+                    c.title.toLowerCase().includes(query) ||
+                    c.instructor.toLowerCase().includes(query) ||
+                    c.summary.toLowerCase().includes(query);
+                return matchesYear && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:28px;" class="text-muted">No courses match your search filter.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(course => {
+                const idx = COURSES.indexOf(course);
+                const yearBadge = course.year === 'year1'
+                    ? '<span class="tag tag-info">Year I</span>'
+                    : '<span class="tag tag-neutral">Year II</span>';
+                return `
+                    <tr>
+                        <td>${yearBadge}</td>
+                        <td class="course-title-cell">
+                            <strong>${course.title}</strong>
+                            <span>${course.summary}</span>
+                        </td>
+                        <td class="text-sec">${course.instructor}</td>
+                        <td class="text-muted text-xs">${course.prerequisites}</td>
+                        <td><strong>${course.credits}</strong></td>
+                        <td><button class="btn btn-outline btn-sm" onclick="openSyllabusModal(${idx})">Syllabus</button></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 2. INSTRUCTORS & FACULTY RENDERING
+        function renderFaculty() {
+            const grid = document.getElementById('faculty-grid');
+            const expertiseFilter = document.getElementById('faculty-expertise-filter')?.value || 'all';
+            const query = (document.getElementById('faculty-search')?.value || '').trim().toLowerCase();
+
+            const filtered = FACULTY.filter(prof => {
+                const matchesExp = expertiseFilter === 'all' || prof.expertiseCategory === expertiseFilter;
+                const matchesQuery = !query ||
+                    prof.name.toLowerCase().includes(query) ||
+                    prof.qualifications.toLowerCase().includes(query) ||
+                    prof.expertise.toLowerCase().includes(query) ||
+                    prof.achievements.toLowerCase().includes(query);
+                return matchesExp && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="card-clean" style="grid-column: 1 / -1; text-align:center;">
+                    <h3>No matching faculty profiles</h3>
+                    <p class="text-sm text-muted">Adjust the expertise filter or search keywords.</p>
+                </div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(prof => {
+                const idx = FACULTY.indexOf(prof);
+                return `
+                    <div class="card-clean">
+                        <div>
+                            <div class="instructor-header">
+                                <div class="headshot-avatar" aria-hidden="true">${prof.initials}</div>
+                                <div>
+                                    <span class="tag tag-neutral mb-1">${prof.role}</span>
+                                    <h3>${prof.name}</h3>
+                                    <div class="text-xs text-muted">${prof.qualifications}</div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-sec">${prof.bio}</p>
+                            <div class="meta-block">
+                                <p><strong>Areas of Expertise:</strong> ${prof.expertise}</p>
+                                <p><strong>Notable Achievements & Publications:</strong> ${prof.achievements}</p>
+                            </div>
+                        </div>
+                        <div class="flex-between" style="border-top:1px solid var(--border); padding-top:12px;">
+                            <span class="text-xs text-muted">Email: <a class="contact-link" href="mailto:${prof.email}">${prof.email}</a></span>
+                            <button class="btn btn-outline btn-sm" onclick="openInquiryModal(${idx})">Inquire</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 3. INTERNSHIP OPPORTUNITIES RENDERING
+        function renderInternships() {
+            const grid = document.getElementById('internships-grid');
+            const compFilter = document.getElementById('int-comp-filter')?.value || 'all';
+            const fieldFilter = document.getElementById('int-field-filter')?.value || 'all';
+            const typeFilter = document.getElementById('int-type-filter')?.value || 'all';
+            const query = (document.getElementById('int-search')?.value || '').trim().toLowerCase();
+
+            const filtered = INTERNSHIPS.filter(item => {
+                const matchesComp = compFilter === 'all' || item.compensation === compFilter;
+                const matchesField = fieldFilter === 'all' || item.field === fieldFilter;
+                const matchesType = typeFilter === 'all' || item.schedule === typeFilter;
+                const matchesQuery = !query ||
+                    item.title.toLowerCase().includes(query) ||
+                    item.company.toLowerCase().includes(query) ||
+                    item.location.toLowerCase().includes(query) ||
+                    item.summary.toLowerCase().includes(query);
+                return matchesComp && matchesField && matchesType && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="card-clean" style="grid-column: 1 / -1; text-align:center;">
+                    <h3>No internships match your filters</h3>
+                    <p class="text-sm text-muted">Try resetting one of the filter dropdowns or search terms.</p>
+                </div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                const isApplied = appState.appliedInternships.has(item.id);
+                const compBadge = item.compensation === 'Paid'
+                    ? '<span class="tag tag-success">Paid</span>'
+                    : '<span class="tag tag-neutral">Unpaid / Credit</span>';
+
+                return `
+                    <div class="card-clean">
+                        <div>
+                            <div class="flex-wrap gap-2 mb-2">
+                                ${compBadge}
+                                <span class="tag tag-info">${item.field}</span>
+                                <span class="tag tag-neutral">${item.schedule}</span>
+                            </div>
+                            <h3>${item.title}</h3>
+                            <p class="text-xs text-muted mb-2"><strong>${item.company}</strong> • ${item.location} • ${item.duration}</p>
+                            <p class="text-sm text-sec mb-2">${item.summary}</p>
+                            <div class="meta-block">
+                                <strong>Key Requirements:</strong>
+                                <ul class="req-list" style="margin-bottom:0; margin-top:4px;">
+                                    ${item.requirements.map(r => `<li>${r}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex-between" style="border-top:1px solid var(--border); padding-top:12px;">
+                            <button class="btn btn-outline btn-sm" onclick="openInternshipModal('${item.id}', 'details')">Learn More</button>
+                            ${isApplied
+                                ? `<button class="btn btn-outline btn-sm" disabled style="color:var(--success); border-color:#a7f3d0;">Applied ✓</button>`
+                                : `<button class="btn btn-accent btn-sm" onclick="openInternshipModal('${item.id}', 'apply')">Apply Now</button>`
+                            }
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 4. ALUMNI VOICES RENDERING
+        function renderAlumni() {
+            const grid = document.getElementById('alumni-grid');
+            const indFilter = document.getElementById('alumni-industry-filter')?.value || 'all';
+            const yearFilter = document.getElementById('alumni-year-filter')?.value || 'all';
+            const roleFilter = document.getElementById('alumni-role-filter')?.value || 'all';
+            const query = (document.getElementById('alumni-search')?.value || '').trim().toLowerCase();
+
+            const filtered = ALUMNI.filter(alum => {
+                const matchesInd = indFilter === 'all' || alum.industry === indFilter;
+                const matchesYear = yearFilter === 'all' || alum.graduationYear === yearFilter;
+                const matchesRole = roleFilter === 'all' || alum.roleType === roleFilter;
+                const matchesQuery = !query ||
+                    alum.name.toLowerCase().includes(query) ||
+                    alum.role.toLowerCase().includes(query) ||
+                    alum.industry.toLowerCase().includes(query) ||
+                    alum.quote.toLowerCase().includes(query) ||
+                    alum.impact.toLowerCase().includes(query);
+                return matchesInd && matchesYear && matchesRole && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="card-clean" style="grid-column: 1 / -1; text-align:center;">
+                    <h3>No alumni stories match your criteria</h3>
+                    <p class="text-sm text-muted">Try selecting "All" in the industry, graduation year, or role filters.</p>
+                </div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(alum => `
+                <div class="card-clean">
+                    <div>
+                        <div class="flex-between mb-2">
+                            <span class="tag tag-info">${alum.industry}</span>
+                            <span class="tag tag-neutral">Class of ${alum.graduationYear}</span>
+                        </div>
+                        <p class="text-sm text-sec" style="font-style:italic; margin-top:8px;">
+                            "${alum.quote}"
+                        </p>
+                        <div class="impact-note">
+                            <strong>Career Trajectory Impact</strong>
+                            ${alum.impact}
+                        </div>
+                    </div>
+                    <div style="border-top:1px solid var(--border); padding-top:12px;">
+                        <strong style="font-size:0.92rem; color:var(--navy);">${alum.name}</strong>
+                        <div class="text-xs text-muted">${alum.role} • ${alum.roleType}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 5. PROGRAM SELECTION (3 BOXES, MAX 2 SELECTABLE: 1ST OPTION & 2ND OPTION)
+        function toggleProgramBox(programId) {
+            const idx = appState.selectedPrograms.indexOf(programId);
+            if (idx > -1) {
+                appState.selectedPrograms.splice(idx, 1);
+            } else {
+                if (appState.selectedPrograms.length >= 2) {
+                    showToast('You can select at most 2 options (1st Option & 2nd Option).');
+                    return;
+                }
+                appState.selectedPrograms.push(programId);
+            }
+            renderProgramBoxes();
+            updateRequiredDocsForFirstOption();
+        }
+
+        function clearProgramChoices() {
+            appState.selectedPrograms = [];
+            renderProgramBoxes();
+            updateRequiredDocsForFirstOption();
+        }
+
+        function renderProgramBoxes() {
+            const container = document.getElementById('program-boxes-container');
+            if (!container) return;
+
+            const first = appState.selectedPrograms[0] || null;
+            const second = appState.selectedPrograms[1] || null;
+            const maxReached = appState.selectedPrograms.length >= 2;
+
+            container.innerHTML = PROGRAM_OPTIONS.map(opt => {
+                const isFirst = opt.id === first;
+                const isSecond = opt.id === second;
+                const isDisabled = maxReached && !isFirst && !isSecond;
+
+                let boxClass = 'program-choice-box';
+                let badgeHtml = '<span class="tag tag-neutral">Click to select</span>';
+
+                if (isFirst) {
+                    boxClass += ' selected-first';
+                    badgeHtml = '<span class="tag tag-info">1st Option</span>';
+                } else if (isSecond) {
+                    boxClass += ' selected-second';
+                    badgeHtml = '<span class="tag tag-magenta">2nd Option</span>';
+                } else if (isDisabled) {
+                    boxClass += ' disabled-box';
+                    badgeHtml = '<span class="tag tag-neutral">Max 2 selected</span>';
+                }
+
+                return `
+                    <div class="${boxClass}" onclick="toggleProgramBox('${opt.id}')">
+                        <div class="choice-top-row">
+                            <span class="choice-title">${opt.title}</span>
+                            ${badgeHtml}
+                        </div>
+                        <span class="choice-sub">${opt.subtitle}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('label-first-choice').innerText = first || 'Not selected';
+            document.getElementById('label-second-choice').innerText = second || 'None';
+        }
+
+        function updateRequiredDocsForFirstOption() {
+            const firstProg = appState.selectedPrograms[0];
+            const rule = PROGRAM_DOC_RULES[firstProg];
+            const secondInput = document.getElementById('w-doc-second');
+            const secondLabel = document.getElementById('w-doc-second-label');
+            const titleEl = document.getElementById('doc-req-title');
+            const descEl = document.getElementById('doc-req-desc');
+
+            secondInput.value = '';
+
+            if (rule) {
+                secondLabel.innerText = rule.secondDocLabel;
+                secondInput.setAttribute('accept', rule.secondAccept);
+                titleEl.innerText = rule.noticeTitle;
+                descEl.innerText = rule.noticeDesc;
+            } else {
+                secondLabel.innerText = '6. Track-Specific Required Document *';
+                secondInput.setAttribute('accept', '.pdf,.doc,.docx,.ppt,.pptx');
+                titleEl.innerText = 'Documente necesare pentru înscrierea la studii universitare de masterat';
+                descEl.innerText = 'Select your 1st Option in Step 3 to see the exact track-specific document required alongside the general Master’s admission documents.';
+            }
+        }
+
+        function getUploadedDocNames() {
+            const files = [
+                document.getElementById('w-doc-birth').files[0]?.name,
+                document.getElementById('w-doc-marriage').files[0]?.name,
+                document.getElementById('w-doc-id').files[0]?.name,
+                document.getElementById('w-doc-diploma').files[0]?.name,
+                document.getElementById('w-doc-medical').files[0]?.name,
+                document.getElementById('w-doc-second').files[0]?.name
+            ].filter(Boolean);
+            return files.join(', ');
+        }
+
+        // ONLINE APPLICATION DOSSIER (WIZARD)
+        const STEP_TITLES = [
+            "Step 1 of 5: Personal Information",
+            "Step 2 of 5: Academic Record",
+            "Step 3 of 5: Program Selection",
+            "Step 4 of 5: Documentation",
+            "Step 5 of 5: Review & Submit"
+        ];
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const digits = phone.replace(/\D/g, '');
+            return digits.length >= 9 && digits.length <= 15;
+        }
+
+        function clearErrors(ids) {
+            ids.forEach(id => document.getElementById(id)?.classList.remove('is-invalid'));
+        }
+
+        function markError(id) {
+            document.getElementById(id)?.classList.add('is-invalid');
+        }
+
+        function nextWizardStep(step) {
+            const alertBox = document.getElementById('wiz-alert');
+            let err = '';
+
+            if (step === 1) {
+                clearErrors(['w-name', 'w-email', 'w-phone']);
+                const name = document.getElementById('w-name').value.trim();
+                const email = document.getElementById('w-email').value.trim();
+                const phone = document.getElementById('w-phone').value.trim();
+
+                if (name.length < 3) { markError('w-name'); err = 'Please enter your full legal name.'; }
+                else if (!isValidEmail(email)) { markError('w-email'); err = 'Please enter a valid email address.'; }
+                else if (!isValidPhone(phone)) { markError('w-phone'); err = 'Please enter a valid phone number (9-15 digits).'; }
+            } else if (step === 2) {
+                clearErrors(['w-uni', 'w-degree', 'w-gpa']);
+                const uni = document.getElementById('w-uni').value.trim();
+                const degree = document.getElementById('w-degree').value.trim();
+                const gpa = parseFloat(document.getElementById('w-gpa').value);
+
+                if (uni.length < 3) { markError('w-uni'); err = 'Please enter your undergraduate university.'; }
+                else if (degree.length < 3) { markError('w-degree'); err = 'Please enter your Bachelor’s specialization.'; }
+                else if (isNaN(gpa) || gpa < 5 || gpa > 10) { markError('w-gpa'); err = 'GPA must be between 5.00 and 10.00.'; }
+            } else if (step === 3) {
+                if (appState.selectedPrograms.length === 0) {
+                    err = 'Please select at least your 1st Option from the program boxes.';
+                } else {
+                    updateRequiredDocsForFirstOption();
+                }
+            } else if (step === 4) {
+                clearErrors(['w-doc-birth', 'w-doc-marriage', 'w-doc-id', 'w-doc-diploma', 'w-doc-medical', 'w-doc-second']);
+                const firstProg = appState.selectedPrograms[0];
+                const secondDocName = PROGRAM_DOC_RULES[firstProg]?.secondDocLabel.replace('6. ', '').replace(' *', '') || 'track-specific required document';
+
+                const requiredDocs = [
+                    { id: 'w-doc-birth', label: 'Certificatul de naștere' },
+                    { id: 'w-doc-id', label: 'Carte (buletin) de identitate' },
+                    { id: 'w-doc-diploma', label: 'Diploma de licență sau echivalent' },
+                    { id: 'w-doc-medical', label: 'Adeverinţă medicală („clinic sănătos pentru înscrierea la facultate”)' },
+                    { id: 'w-doc-second', label: secondDocName }
+                ];
+
+                const missingDoc = requiredDocs.find(d => !document.getElementById(d.id).files[0]);
+                if (missingDoc) {
+                    markError(missingDoc.id);
+                    err = `Please upload: ${missingDoc.label}.`;
+                }
+            }
+
+            if (err) {
+                alertBox.innerText = err;
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            alertBox.style.display = 'none';
+            if (step === 4) {
+                const name = document.getElementById('w-name').value.trim();
+                const email = document.getElementById('w-email').value.trim();
+                const phone = document.getElementById('w-phone').value.trim();
+                const uni = document.getElementById('w-uni').value.trim();
+                const degree = document.getElementById('w-degree').value.trim();
+                const gpa = parseFloat(document.getElementById('w-gpa').value).toFixed(2);
+                const firstOpt = appState.selectedPrograms[0] || '-';
+                const secondOpt = appState.selectedPrograms[1] || 'None';
+                const uploadedFilesSummary = getUploadedDocNames();
+
+                document.getElementById('sum-name').innerText = name;
+                document.getElementById('sum-contact').innerText = `${email} • ${phone}`;
+                document.getElementById('sum-edu').innerText = `${uni} - ${degree} (GPA: ${gpa})`;
+                document.getElementById('sum-first-option').innerText = firstOpt;
+                document.getElementById('sum-second-option').innerText = secondOpt;
+                document.getElementById('sum-docs').innerText = uploadedFilesSummary;
+            }
+            goToWizardStep(step + 1);
+        }
+
+        function goToWizardStep(stepNum) {
+            document.getElementById('wiz-alert').style.display = 'none';
+            document.querySelectorAll('.wizard-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('wiz-panel-' + stepNum).classList.add('active');
+
+            const pct = stepNum * 20;
+            document.getElementById('wiz-progress-bar').style.width = pct + '%';
+            document.getElementById('wiz-pct-text').innerText = pct + '%';
+            document.getElementById('wiz-step-text').innerText = STEP_TITLES[stepNum - 1];
+
+            for (let i = 1; i <= 5; i++) {
+                const pill = document.getElementById('pill-' + i);
+                pill.classList.remove('active', 'done');
+                if (i < stepNum) pill.classList.add('done');
+                if (i === stepNum) pill.classList.add('active');
+            }
+        }
+
+        function completeWizardSubmission() {
+            const refNum = Math.floor(100 + Math.random() * 900);
+            const name = document.getElementById('w-name').value.trim();
+            const firstOpt = appState.selectedPrograms[0];
+            const secondOpt = appState.selectedPrograms[1] || 'None';
+            const uploadedFilesSummary = getUploadedDocNames();
+
+            appState.applications.unshift({
+                refId: `#SNSPA-PM-2026-${refNum}`,
+                firstOption: firstOpt,
+                secondOption: secondOpt,
+                applicantName: name,
+                submittedDate: 'November 14, 2026 (Just now)',
+                status: 'Submitted',
+                documents: uploadedFilesSummary
+            });
+
+            ['w-name', 'w-email', 'w-phone', 'w-uni', 'w-degree', 'w-gpa', 'w-doc-birth', 'w-doc-marriage', 'w-doc-id', 'w-doc-diploma', 'w-doc-medical', 'w-doc-second']
+                .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+            appState.selectedPrograms = [];
+            renderProgramBoxes();
+            goToWizardStep(1);
+
+            renderApplicationsStatus();
+            showToast(`Application submitted for ${firstOpt}. Redirecting to status tracker...`);
+            navigateTo('status');
+        }
+
+        // 6. APPLICATION STATUS TRACKER
+        const STATUS_STAGES = ['Submitted', 'Under Review', 'Documents Missing', 'Decision Made'];
+
+        function getStatusConfig(status) {
+            switch (status) {
+                case 'Submitted':
+                    return {
+                        boxClass: 'status-box-submitted',
+                        tagClass: 'tag-info',
+                        notification: 'Your application has been submitted and registered in the admissions portal.'
+                    };
+                case 'Under Review':
+                    return {
+                        boxClass: 'status-box-review',
+                        tagClass: 'tag-warning',
+                        notification: 'Your application is now under review by the Faculty Admissions Committee.'
+                    };
+                case 'Documents Missing':
+                    return {
+                        boxClass: 'status-box-missing',
+                        tagClass: 'tag-danger',
+                        notification: 'Action required: One or more required documents are missing or incomplete.'
+                    };
+                case 'Decision Made':
+                default:
+                    return {
+                        boxClass: 'status-box-decision',
+                        tagClass: 'tag-success',
+                        notification: 'Decision made: Your application evaluation is complete. Admission decision available.'
+                    };
+            }
+        }
+
+        function cycleApplicationStatus(index, newStatus) {
+            if (!appState.applications[index]) return;
+            appState.applications[index].status = newStatus;
+            renderApplicationsStatus();
+            showToast(`Status updated to "${newStatus}" for ${appState.applications[index].firstOption}.`);
+        }
+
+        function renderApplicationsStatus() {
+            const container = document.getElementById('applications-status-list');
+            if (!container) return;
+
+            container.innerHTML = appState.applications.map((app, idx) => {
+                const cfg = getStatusConfig(app.status);
+                return `
+                    <div class="app-status-card">
+                        <div class="flex-between mb-1" style="flex-wrap:wrap; gap:8px;">
+                            <div>
+                                <span class="text-xs text-muted">${app.refId} • Submitted: ${app.submittedDate}</span>
+                                <h3 style="font-size:1.12rem; color:var(--navy); margin-top:2px;">${app.firstOption} Application <span class="text-xs text-muted" style="font-weight:500;">(1st Option)</span></h3>
+                            </div>
+                            <span class="tag ${cfg.tagClass}">${app.status}</span>
+                        </div>
+                        <p class="text-xs text-sec">Applicant: <strong>${app.applicantName}</strong> • Files: ${app.documents}</p>
+
+                        <div class="second-option-field">
+                            <span class="text-sec">2nd Option (Secondary Preference):</span>
+                            <strong style="color:var(--navy);">${app.secondOption}</strong>
+                        </div>
+
+                        <div class="status-highlight-box ${cfg.boxClass}">
+                            <div>
+                                <strong style="display:block; font-size:0.86rem; margin-bottom:2px;">Status (${app.firstOption}): ${app.status}</strong>
+                                <span style="font-size:0.83rem;">${cfg.notification}</span>
+                            </div>
+                            <div class="tab-group" style="background:rgba(255,255,255,0.75);">
+                                ${STATUS_STAGES.map(st => `
+                                    <button class="tab-btn ${app.status === st ? 'active' : ''}" onclick="cycleApplicationStatus(${idx}, '${st}')">${st}</button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 7. STUDENT ACADEMIC RECORD
+        function getProgressBarClass(pct) {
+            if (pct >= 85) return 'bar-high';
+            if (pct >= 70) return 'bar-mid';
+            return 'bar-low';
+        }
+
+        function renderStudentAcademicRecord() {
+            const grid = document.getElementById('student-courses-grid');
+            if (!grid) return;
+
+            let totalAvg = 0;
+            grid.innerHTML = STUDENT_ENROLLMENTS.map(course => {
+                totalAvg += course.average;
+                const barClass = getProgressBarClass(course.completion);
+                return `
+                    <div class="card-clean">
+                        <div>
+                            <div class="flex-between mb-2">
+                                <span class="tag tag-info">${course.status}</span>
+                                <strong style="color:var(--navy); font-size:0.95rem;">Average Grade: ${course.average.toFixed(2)} / 10</strong>
+                            </div>
+                            <h3>${course.title}</h3>
+
+                            <div class="meta-block mt-2">
+                                <strong style="display:block; margin-bottom:6px; color:var(--navy);">Grade Breakdown (Assignments, Exams, Projects)</strong>
+                                ${course.breakdown.map(item => `
+                                    <div class="flex-between" style="padding:4px 0; border-bottom:1px solid var(--border);">
+                                        <span class="text-sec">${item.label}</span>
+                                        <strong style="color:var(--text-primary);">${item.score}</strong>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <div class="flex-between text-xs text-muted">
+                                <span>Module Completion Level</span>
+                                <strong>${course.completion}%</strong>
+                            </div>
+                            <div class="meter">
+                                <div class="meter-fill ${barClass}" style="width: ${course.completion}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const overallGpa = (totalAvg / STUDENT_ENROLLMENTS.length).toFixed(2);
+            document.getElementById('dash-gpa').innerText = `${overallGpa} / 10`;
+        }
+
+        function refreshStudentGrades() {
+            appState.gradeRefreshCount += 1;
+
+            STUDENT_ENROLLMENTS[0].breakdown[2].score = '9.70 / 10 (Posted)';
+            STUDENT_ENROLLMENTS[0].average = 9.66;
+            STUDENT_ENROLLMENTS[0].completion = 100;
+
+            STUDENT_ENROLLMENTS[2].breakdown[2].score = '9.40 / 10 (Posted)';
+            STUDENT_ENROLLMENTS[2].average = 9.30;
+            STUDENT_ENROLLMENTS[2].completion = 86;
+
+            renderStudentAcademicRecord();
+
+            const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('sync-timestamp').innerText = `Academic Registry Sync: Refreshed at ${now} (Session Active)`;
+
+            appState.hasUnreadGradeNotice = true;
+            appState.latestGradeMessage = `New grades exist: Final exam grades posted for Agile Project Management (9.70) and Applications for Project Management (9.40).`;
+            const badge = document.getElementById('grade-bell-badge');
+            badge.innerText = 'NEW';
+            badge.classList.add('has-new');
+
+            document.getElementById('grade-bell-text').innerText = appState.latestGradeMessage;
+            document.getElementById('grade-bell-banner').classList.add('open');
+
+            showToast('Grades refreshed - new grades available in notifications.');
+        }
+
+        function toggleBellNotification() {
+            const banner = document.getElementById('grade-bell-banner');
+            const textEl = document.getElementById('grade-bell-text');
+            textEl.innerText = appState.latestGradeMessage || 'No new grade notifications. Click "Refresh Grades" to check for updates.';
+            banner.classList.toggle('open');
+        }
+
+        function dismissBellNotification() {
+            document.getElementById('grade-bell-banner').classList.remove('open');
+            document.getElementById('grade-bell-badge').classList.remove('has-new');
+        }
+
+        // MODALS & FILE EXPORT
+        function openModal(id) { document.getElementById(id)?.classList.add('open'); }
+        function closeModal(id) { document.getElementById(id)?.classList.remove('open'); }
+        function handleOverlayClick(e, id) { if (e.target.id === id) closeModal(id); }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') document.querySelectorAll('.modal-backdrop.open').forEach(m => m.classList.remove('open'));
+        });
+
+        function openSyllabusModal(idx) {
+            const c = COURSES[idx];
+            if (!c) return;
+            appState.selectedSyllabus = c;
+            document.getElementById('mod-title').innerText = c.title;
+            document.getElementById('mod-instructor').innerText = c.instructor;
+            document.getElementById('mod-credits').innerText = `${c.credits} (${c.duration})`;
+            document.getElementById('mod-prereq').innerText = c.prerequisites;
+            document.getElementById('mod-desc').innerText = `${c.summary} ${c.outcomes}`;
+            openModal('syllabus-modal');
+        }
+
+        function downloadSyllabusFile() {
+            const c = appState.selectedSyllabus;
+            if (!c) return;
+            const text = [
+                'SNSPA - FACULTY OF COMMUNICATION AND PUBLIC RELATIONS',
+                'MASTER IN PROJECT MANAGEMENT (PMI GAC ACCREDITED)',
+                '---------------------------------------------------------',
+                `Course:        ${c.title}`,
+                `Academic Year: ${c.year === 'year1' ? 'Year I' : 'Year II'}`,
+                `Credits:       ${c.credits} (${c.duration})`,
+                `Coordinator:   ${c.instructor}`,
+                `Prerequisites: ${c.prerequisites}`,
+                '',
+                'Course Summary:',
+                c.summary,
+                '',
+                'Learning Outcomes:',
+                c.outcomes
+            ].join('\n');
+
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${c.title.replace(/[^a-z0-9]/gi, '_')}_Syllabus.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            closeModal('syllabus-modal');
+            showToast(`Syllabus downloaded: ${c.title}`);
+        }
+
+        function openInternshipModal(id, mode) {
+            const item = INTERNSHIPS.find(i => i.id === id);
+            if (!item) return;
+            appState.selectedInternshipId = id;
+
+            document.getElementById('int-modal-eyebrow').innerText = `${item.compensation} • ${item.field} • ${item.schedule}`;
+            document.getElementById('int-modal-title').innerText = item.title;
+            document.getElementById('int-modal-company').innerText = `${item.company} • ${item.location} • ${item.duration}`;
+            document.getElementById('int-modal-full-desc').innerText = item.summary;
+            document.getElementById('int-modal-reqs').innerHTML = item.requirements.map(r => `<li>${r}</li>`).join('');
+            document.getElementById('int-alert').style.display = 'none';
+
+            if (appState.currentUser) {
+                document.getElementById('int-applicant-name').value = appState.currentUser.name;
+                document.getElementById('int-applicant-email').value = appState.currentUser.email;
+            }
+            openModal('internship-modal');
+        }
+
+        function submitInternshipApplication() {
+            const name = document.getElementById('int-applicant-name').value.trim();
+            const email = document.getElementById('int-applicant-email').value.trim();
+            const note = document.getElementById('int-applicant-note').value.trim();
+            const alertBox = document.getElementById('int-alert');
+
+            if (name.length < 3 || !isValidEmail(email) || note.length < 10) {
+                alertBox.innerText = 'Please enter your name, valid email, and availability details.';
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            appState.appliedInternships.add(appState.selectedInternshipId);
+            renderInternships();
+            closeModal('internship-modal');
+            showToast('Placement application sent to partner organization.');
+        }
+
+        function openInquiryModal(profIdx) {
+            const prof = FACULTY[profIdx];
+            if (!prof) return;
+            document.getElementById('inq-prof-name').innerText = `Inquire: ${prof.name}`;
+            document.getElementById('inq-prof-email').innerText = `Recipient: ${prof.email}`;
+            document.getElementById('inq-alert').style.display = 'none';
+            document.getElementById('inq-message').value = '';
+            openModal('inquiry-modal');
+        }
+
+        function submitInstructorInquiry() {
+            const name = document.getElementById('inq-sender-name').value.trim();
+            const email = document.getElementById('inq-sender-email').value.trim();
+            const msg = document.getElementById('inq-message').value.trim();
+            const alertBox = document.getElementById('inq-alert');
+
+            if (name.length < 3 || !isValidEmail(email) || msg.length < 10) {
+                alertBox.innerText = 'Please provide your name, a valid email, and your question (min. 10 characters).';
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            closeModal('inquiry-modal');
+            showToast('Your academic inquiry has been sent to the instructor.');
+        }
+
+        let toastTimer = null;
+        function showToast(msg) {
+            const el = document.getElementById('toast-notification');
+            el.innerText = msg;
+            el.classList.add('visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => el.classList.remove('visible'), 3200);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCurriculum();
+            renderFaculty();
+            renderInternships();
+            renderAlumni();
+            renderProgramBoxes();
+            renderApplicationsStatus();
+            renderStudentAcademicRecord();
+        });
+    </script>
+</body>
+</html>
